@@ -69,7 +69,7 @@
         "roave/no-floaters": "^1.6",
         "roave/security-advisories": "dev-latest",
         "spatie/pest-plugin-snapshots": "^1.1",
-        "symplify/monorepo-builder": "^10.0",
+        "symplify/monorepo-builder": "^10.0 || ^11.0",
         "vimeo/psalm": "^4.16"
     },
     "replace": {},
