@@ -1,19 +1,14 @@
 includes:
     - phpstan-baseline.neon
-#    - vendor/roave/no-floaters/rules.neon
-#    - vendor/phpstan/phpstan-strict-rules/rules.neon
-#    - vendor/ergebnis/phpstan-rules/rules.neon
-#    - vendor/ekino/phpstan-banned-code/extension.neon
 
 parameters:
-    level: 8
+    level: 5
     paths:
         - src
     tmpDir: build/phpstan
     checkOctaneCompatibility: true
     checkModelProperties: true
     checkMissingIterableValueType: true
-#    disallowFloatsEverywhere: true
 
     strictRules:
         allRules: false

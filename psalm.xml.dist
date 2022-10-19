@@ -16,7 +16,6 @@
             <file name="src/UpdateHelper.php"/>
         </ignoreFiles>
     </projectFiles>
-
     <issueHandlers>
         <PropertyNotSetInConstructor errorLevel="info"/>
     </issueHandlers>

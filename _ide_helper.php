@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the guanguans/laravel-web-tinker.
+ * This file is part of the guanguans/laravel-code-runner.
  *
  * (c) guanguans <ityaozm@gmail.com>
  *
@@ -10,4 +10,7 @@
 
 namespace {
 
+    class CodeRunner extends \Guanguans\LaravelCodeRunner\Facades\CodeRunner
+    {
+    }
 }

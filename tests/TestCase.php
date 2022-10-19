@@ -3,17 +3,19 @@
 declare(strict_types=1);
 
 /**
- * This file is part of the guanguans/laravel-web-tinker.
+ * This file is part of the guanguans/laravel-code-runner.
  *
  * (c) guanguans <ityaozm@gmail.com>
  *
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\LaravelWebTinkerTests;
+namespace Guanguans\LaravelCodeRunnerTests;
 
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
+use Guanguans\LaravelCodeRunner\CodeRunnerServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Livewire\LivewireServiceProvider;
 use Mockery;
 
 class TestCase extends \Orchestra\Testbench\TestCase
@@ -44,7 +46,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
         // \DG\BypassFinals::enable();
 
         Factory::guessFactoryNamesUsing(
-            static fn ($modelName): string => 'Guanguans\\LaravelWebTinker\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            static fn ($modelName): string => 'Guanguans\\LaravelCodeRunner\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
@@ -68,7 +70,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
-            // SkeletonServiceProvider::class,
+            LivewireServiceProvider::class,
+            CodeRunnerServiceProvider::class,
         ];
     }
 

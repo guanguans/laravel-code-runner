@@ -1,14 +1,19 @@
 {
-    "name": "guanguans/laravel-web-tinker",
-    "description": "Artisan Tinker in your browser",
+    "name": "guanguans/laravel-code-runner",
+    "description": "Run the code in the browser. - 在浏览器中运行代码。",
     "license": "MIT",
     "type": "library",
     "abandoned": false,
     "non-feature-branches": [],
     "keywords": [
-        "web-tinker",
         "laravel",
+        "code-runner",
+        "code",
+        "runner",
+        "web",
         "tinker",
+        "artisan",
+        "browser",
         "debug",
         "development"
     ],
@@ -21,10 +26,10 @@
             "role": "developer"
         }
     ],
-    "homepage": "https://github.com/guanguans/laravel-web-tinker",
+    "homepage": "https://github.com/guanguans/laravel-code-runner",
     "support": {
-        "issues": "https://github.com/guanguans/laravel-web-tinker/issues",
-        "source": "https://github.com/guanguans/laravel-web-tinker"
+        "issues": "https://github.com/guanguans/laravel-code-runner/issues",
+        "source": "https://github.com/guanguans/laravel-code-runner"
     },
     "funding": [
         {
@@ -75,7 +80,7 @@
     "autoload": {
         "psr-0": {},
         "psr-4": {
-            "Guanguans\\LaravelWebTinker\\": "src"
+            "Guanguans\\LaravelCodeRunner\\": "src"
         },
         "classmap": [],
         "files": [],
@@ -85,7 +90,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Guanguans\\LaravelWebTinkerTests\\": "tests"
+            "Guanguans\\LaravelCodeRunnerTests\\": "tests"
         }
     },
     "bin": [],
@@ -93,6 +98,7 @@
     "config": {
         "allow-plugins": {
             "infection/extension-installer": true,
+            "kylekatarnls/update-helper": false,
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true
         },
@@ -114,14 +120,17 @@
                 "composer checks"
             ]
         },
+        "laravel": {
+            "aliases": {
+                "CodeRunner": "Guanguans\\LaravelCodeRunner\\Facades\\CodeRunner"
+            },
+            "providers": [
+                "Guanguans\\LaravelCodeRunner\\CodeRunnerServiceProvider"
+            ]
+        },
         "phpstan": {
             "includes": [
                 "extension.neon"
-            ]
-        },
-        "laravel": {
-            "providers": [
-                "Guanguans\\LaravelWebTinker\\WebTinkerServiceProvider"
             ]
         }
     },
@@ -133,14 +142,15 @@
         "post-update-cmd": [
             "@cghooks update"
         ],
-        "post-autoload-dump": [
-        ],
+        "post-autoload-dump": [],
         "cghooks": "./vendor/bin/cghooks",
         "checks": [
             "@mark-start",
             "@style-lint",
             "@mark-separate",
             "@test",
+            "@mark-separate",
+            "@psalm",
             "@mark-finish"
         ],
         "infection": "./vendor/bin/infection --test-framework=pest --show-mutations --threads=4 --ansi",
@@ -161,7 +171,7 @@
         "rector": "./vendor/bin/rector --clear-cache --ansi -v",
         "rector-dry-run": "@rector --dry-run",
         "style-fix": "./vendor/bin/php-cs-fixer fix --using-cache=no --config=.php-cs-fixer.php --ansi",
-        "style-lint": "@style-fix --diff --dry-run",
+        "style-lint": "@style-fix --dry-run --diff",
         "test": "@pest",
         "test-coverage": "@pest-coverage"
     },

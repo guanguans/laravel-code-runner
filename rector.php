@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of the guanguans/laravel-web-tinker.
+ * This file is part of the guanguans/laravel-code-runner.
  *
  * (c) guanguans <ityaozm@gmail.com>
  *
@@ -31,6 +31,8 @@ use Rector\DeadCode\Rector\Assign\RemoveUnusedVariableAssignRector;
 use Rector\DeadCode\Rector\MethodCall\RemoveEmptyMethodCallRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
+use Rector\Laravel\Set\LaravelLevelSetList;
+use Rector\Laravel\Set\LaravelSetList;
 use Rector\Php56\Rector\FunctionLike\AddDefaultValueForUndefinedVariableRector;
 use Rector\PHPUnit\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitLevelSetList;
@@ -49,39 +51,44 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->paths([
+        // __DIR__.'/config',
+        __DIR__.'/routes',
         __DIR__.'/src',
         __DIR__.'/tests',
+        __DIR__.'/.php-cs-fixer.php',
+        __DIR__.'/rector.php',
     ]);
 
     $rectorConfig->skip([
         // rules
-        CallableThisArrayToAnonymousFunctionRector::class,
-        InlineIfToExplicitIfRector::class,
-        LogicalToBooleanRector::class,
-        SimplifyBoolIdenticalTrueRector::class,
-        RemoveEmptyMethodCallRector::class,
-        AddSeeTestAnnotationRector::class,
-        NormalizeNamespaceByPSR4ComposerAutoloadRector::class,
-        ChangeAndIfToEarlyReturnRector::class,
-        ReturnBinaryOrToEarlyReturnRector::class,
-        EncapsedStringsToSprintfRector::class,
-        WrapEncapsedVariableInCurlyBracesRector::class,
+        // CallableThisArrayToAnonymousFunctionRector::class,
+        // InlineIfToExplicitIfRector::class,
+        // LogicalToBooleanRector::class,
+        // SimplifyBoolIdenticalTrueRector::class,
+        // RemoveEmptyMethodCallRector::class,
+        // AddSeeTestAnnotationRector::class,
+        // NormalizeNamespaceByPSR4ComposerAutoloadRector::class,
+        // ChangeAndIfToEarlyReturnRector::class,
+        // ReturnBinaryOrToEarlyReturnRector::class,
+        // EncapsedStringsToSprintfRector::class,
+        // WrapEncapsedVariableInCurlyBracesRector::class,
 
         // optional rules
         // AddDefaultValueForUndefinedVariableRector::class,
         // RemoveUnusedVariableAssignRector::class,
         // UnSpreadOperatorRector::class,
         // ConsistentPregDelimiterRector::class,
-        // StaticClosureRector::class,
+        StaticClosureRector::class,
 
         // paths
+        '**/fixtures*',
+        '**/fixtures/*',
         '**/Fixture*',
         '**/Fixture/*',
         '**/Source*',
         '**/Source/*',
         '**/Expected/*',
         '**/Expected*',
-        __DIR__.'/src/foundation/tests/AppTest.php',
     ]);
 
     $rectorConfig->sets([
@@ -100,8 +107,15 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::TYPE_DECLARATION_STRICT,
         SetList::EARLY_RETURN,
 
-        PHPUnitLevelSetList::UP_TO_PHPUNIT_70,
-        // PHPUnitSetList::PHPUNIT80_DMS,
+        LaravelLevelSetList::UP_TO_LARAVEL_70,
+        LaravelSetList::ARRAY_STR_FUNCTIONS_TO_STATIC_CALL,
+        // LaravelSetList::LARAVEL_STATIC_TO_INJECTION,
+        LaravelSetList::LARAVEL_CODE_QUALITY,
+        LaravelSetList::LARAVEL_ARRAY_STR_FUNCTION_TO_STATIC_CALL,
+        LaravelSetList::LARAVEL_LEGACY_FACTORIES_TO_CLASSES,
+
+        PHPUnitLevelSetList::UP_TO_PHPUNIT_80,
+        PHPUnitSetList::PHPUNIT80_DMS,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
         PHPUnitSetList::PHPUNIT_EXCEPTION,
         PHPUnitSetList::REMOVE_MOCKS,

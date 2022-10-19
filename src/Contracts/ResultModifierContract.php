@@ -10,8 +10,9 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\LaravelCodeRunnerTests\Feature;
+namespace Guanguans\LaravelCodeRunner\Contracts;
 
-class TestCase extends \Guanguans\LaravelCodeRunnerTests\TestCase
+interface ResultModifierContract
 {
+    public function modify(string $result): string;
 }

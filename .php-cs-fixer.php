@@ -3,22 +3,26 @@
 declare(strict_types=1);
 
 /**
- * This file is part of the guanguans/laravel-web-tinker.
+ * This file is part of the guanguans/laravel-code-runner.
  *
  * (c) guanguans <ityaozm@gmail.com>
  *
  * This source file is subject to the MIT license that is bundled.
  */
 
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
+
 $header = <<<EOF
-This file is part of the guanguans/laravel-web-tinker.
+This file is part of the guanguans/laravel-code-runner.
 
 (c) guanguans <ityaozm@gmail.com>
 
 This source file is subject to the MIT license that is bundled.
 EOF;
 
-$finder = PhpCsFixer\Finder::create()
+/** @noinspection PhpParamsInspection */
+$finder = Finder::create()
     ->in([
         __DIR__.'/config',
         __DIR__.'/routes',
@@ -46,7 +50,7 @@ $finder = PhpCsFixer\Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-return (new PhpCsFixer\Config())
+return (new Config())
     ->setRules([
         '@DoctrineAnnotation' => true,
         '@PHP80Migration:risky' => true,
