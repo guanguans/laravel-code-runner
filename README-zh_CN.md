@@ -36,7 +36,7 @@ $ php artisan code-runner:install
 发布配置文件(可选的)。
 
 ```bash
-$ php artisan vendor:publish --provider="Guanguans\LaravelCodeRunner\WebTinkerServiceProvider" --tag="code-runner-config"
+$ php artisan vendor:publish --provider="Guanguans\LaravelCodeRunner\CodeRunnerServiceProvider" --tag="code-runner-config"
 ```
 
 ## 使用

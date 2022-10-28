@@ -13,35 +13,38 @@ declare(strict_types=1);
 namespace Guanguans\LaravelCodeRunner;
 
 use Closure;
-use Guanguans\LaravelCodeRunner\Contracts\CodeModifierContract;
 use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
-use Guanguans\LaravelCodeRunner\Contracts\ResultModifierContract;
 use Guanguans\LaravelCodeRunner\Events\CodeRunnedEvent;
 use Guanguans\LaravelCodeRunner\Events\CodeRunningEvent;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Pipeline\Pipeline;
 
 class CodeRunner implements CodeRunnerContract
 {
     protected CodeRunnerContract $codeRunner;
-    protected CodeModifierContract $codeModifier;
-    protected ResultModifierContract $resultModifier;
+    protected Pipeline $pipeline;
+    protected Repository $repository;
     protected Dispatcher $dispatcher;
 
     public function __construct(
         CodeRunnerContract $codeRunnerContract,
-        CodeModifierContract $codeModifierContract,
-        ResultModifierContract $resultModifierContract,
+        Pipeline $pipeline,
+        Repository $repository,
         Dispatcher $dispatcher
     ) {
         $this->codeRunner = $codeRunnerContract;
-        $this->codeModifier = $codeModifierContract;
-        $this->resultModifier = $resultModifierContract;
+        $this->pipeline = $pipeline;
+        $this->repository = $repository;
         $this->dispatcher = $dispatcher;
     }
 
     public function run(string $code): string
     {
-        $modifiedCode = $this->codeModifier->modify($code);
+        $modifiedCode = (clone $this->pipeline)
+            ->send($code)
+            ->through($this->repository->get('code-runner.code_handlers'))
+            ->thenReturn();
 
         $this->fireCodeRunningEvent($modifiedCode);
 
@@ -49,7 +52,10 @@ class CodeRunner implements CodeRunnerContract
 
         $this->fireCodeRunnedEvent($result);
 
-        return $this->resultModifier->modify($result);
+        return (clone $this->pipeline)
+            ->send($result)
+            ->through($this->repository->get('code-runner.result_handlers'))
+            ->thenReturn();
     }
 
     public function listenCodeRunning(Closure $callback): void

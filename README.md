@@ -36,7 +36,7 @@ $ php artisan code-runner:install
 Optionally, you can publish the config file of the package.
 
 ```bash
-$ php artisan vendor:publish --provider="Guanguans\LaravelCodeRunner\WebTinkerServiceProvider" --tag="code-runner-config"
+$ php artisan vendor:publish --provider="Guanguans\LaravelCodeRunner\CodeRunnerServiceProvider" --tag="code-runner-config"
 ```
 
 ## Usage

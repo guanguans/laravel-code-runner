@@ -13,9 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\LaravelCodeRunner;
 
 use Guanguans\LaravelCodeRunner\Console\Commands\InstallCommand;
-use Guanguans\LaravelCodeRunner\Contracts\CodeModifierContract;
 use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
-use Guanguans\LaravelCodeRunner\Contracts\ResultModifierContract;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Arr;
@@ -52,16 +50,6 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
             fn (): CodeRunnerContract => $this->make(config('code-runner.code_runner'))
         );
 
-        $this->app->bind(
-            CodeModifierContract::class,
-            fn (): CodeModifierContract => $this->make(config('code-runner.code_modifier'))
-        );
-
-        $this->app->bind(
-            ResultModifierContract::class,
-            fn (): ResultModifierContract => $this->make(config('code-runner.result_modifier'))
-        );
-
         $this->app->singleton(CodeRunner::class);
         $this->app->alias(CodeRunner::class, 'laravel-code-runner.code-runner');
     }
@@ -93,9 +81,7 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
     public function provides(): array
     {
         return [
-            CodeModifierContract::class,
             CodeRunnerContract::class,
-            ResultModifierContract::class,
             CodeRunner::class,
             'laravel-code-runner.code-runner',
         ];

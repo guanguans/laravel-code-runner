@@ -20,7 +20,10 @@ return [
 
     'route' => [
         'domain' => null,
-        'middleware' => Guanguans\LaravelCodeRunner\Http\Middleware\Authorize::class,
+        'middleware' => [
+            'throttle:60,1',
+            Guanguans\LaravelCodeRunner\Http\Middleware\Authorize::class,
+        ],
         'name' => 'code-runner.',
         'as' => 'code-runner.',
         'prefix' => '/code-runner',
@@ -28,7 +31,19 @@ return [
 
     'code_runner' => Guanguans\LaravelCodeRunner\CodeRunners\TinkerCodeRunner::class,
 
-    'code_modifier' => Guanguans\LaravelCodeRunner\CodeModifiers\RemoveCommentCodeModifier::class,
+    'code_handlers' => [
+        sprintf(
+            '%s:%s,%s,%s,%s',
+            Guanguans\LaravelCodeRunner\CodeHandlers\RemoveTokensCodeHandler::class,
+            T_COMMENT,
+            T_DOC_COMMENT,
+            T_OPEN_TAG,
+            T_CLOSE_TAG
+        ),
+    ],
 
-    'result_modifier' => \Guanguans\LaravelCodeRunner\ResultModifiers\PrefixDateTimeResultModifier::class,
+    'result_handlers' => [
+        Guanguans\LaravelCodeRunner\ResultHandlers\ClearResultHandler::class,
+        Guanguans\LaravelCodeRunner\ResultHandlers\PrefixDateTimeResultHandler::class,
+    ],
 ];
