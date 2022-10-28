@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(
     ['namespace' => 'Guanguans\LaravelCodeRunner\Http\Controllers'] + config('code-runner.route'),
     static function (Router $router): void {
-        Route::get('/', 'CodeRunnerController@index');
-        Route::post('/run', 'CodeRunnerController@run')->name('run');
+        $router->get('/', 'CodeRunnerController@index');
+        $router->post('/run', 'CodeRunnerController@run')->name('run');
     }
 );

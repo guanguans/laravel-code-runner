@@ -1,17 +1,18 @@
 # laravel-code-runner
 
+![](docs/usage.png)
+
 [ENGLISH](README.md) | [简体中文](README-zh_CN.md)
 
-> Run the code in the browser. - 在浏览器中运行代码。
+> Run the PHP code in the browser. - 在浏览器中运行 PHP 代码。
 
 [![tests](https://github.com/guanguans/laravel-code-runner/workflows/tests/badge.svg)](https://github.com/guanguans/laravel-code-runner/actions)
 [![check & fix styling](https://github.com/guanguans/laravel-code-runner/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/guanguans/laravel-code-runner/actions)
 [![codecov](https://codecov.io/gh/guanguans/laravel-code-runner/branch/main/graph/badge.svg?token=URGFAWS6S4)](https://codecov.io/gh/guanguans/laravel-code-runner)
 [![Latest Stable Version](https://poser.pugx.org/guanguans/laravel-code-runner/v)](//packagist.org/packages/guanguans/laravel-code-runner)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/guanguans/laravel-code-runner)
 [![Total Downloads](https://poser.pugx.org/guanguans/laravel-code-runner/downloads)](//packagist.org/packages/guanguans/laravel-code-runner)
 [![License](https://poser.pugx.org/guanguans/laravel-code-runner/license)](//packagist.org/packages/guanguans/laravel-code-runner)
-![GitHub repo size](https://img.shields.io/github/repo-size/guanguans/laravel-code-runner)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/guanguans/laravel-code-runner)
 
 ## Requirement
 
@@ -39,8 +40,6 @@ $ php artisan vendor:publish --provider="Guanguans\LaravelCodeRunner\WebTinkerSe
 ```
 
 ## Usage
-
-![](docs/usage.png)
 
 By default this package will only run in a local environment.
 

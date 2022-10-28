@@ -20,7 +20,7 @@
     </include>
     <exclude>
       <directory>src/Facades</directory>
-      <file>src/WebTinkerServiceProvider.php</file>
+      <file>src/xxx.php</file>
     </exclude>
   </coverage>
   <testsuites>

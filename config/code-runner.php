@@ -26,7 +26,7 @@ return [
         'prefix' => '/code-runner',
     ],
 
-    'code_runner' => Guanguans\LaravelCodeRunner\CodeRunners\ArtisanCodeRunner::class,
+    'code_runner' => Guanguans\LaravelCodeRunner\CodeRunners\TinkerCodeRunner::class,
 
     'code_modifier' => Guanguans\LaravelCodeRunner\CodeModifiers\RemoveCommentCodeModifier::class,
 
