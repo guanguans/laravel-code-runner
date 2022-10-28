@@ -12,8 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\LaravelCodeRunner\Http\Controllers;
 
-use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
-use Guanguans\LaravelCodeRunner\Contracts\ResultModifierContract;
+use Guanguans\LaravelCodeRunner\CodeRunner;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -37,19 +36,14 @@ class CodeRunnerController extends Controller
         ]);
     }
 
-    public function run(
-        Request $request,
-        CodeRunnerContract $codeRunnerContract,
-        ResultModifierContract $resultModifierContract
-    ): JsonResponse {
+    public function run(Request $request, CodeRunner $codeRunner): JsonResponse
+    {
         $validated = $request->validate([
             'code' => 'required|string',
         ]);
 
-        $result = $codeRunnerContract->run($validated['code']);
-
         return response()->json([
-            'result' => $resultModifierContract->modify($result),
+            'result' => $codeRunner->run($validated['code']),
         ]);
     }
 }

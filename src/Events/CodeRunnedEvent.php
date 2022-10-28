@@ -10,8 +10,14 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\LaravelCodeRunner\Contracts;
+namespace Guanguans\LaravelCodeRunner\Events;
 
-interface ResultModifierContract extends ModifierContract
+class CodeRunnedEvent
 {
+    public string $result;
+
+    public function __construct(string $result)
+    {
+        $this->result = $result;
+    }
 }

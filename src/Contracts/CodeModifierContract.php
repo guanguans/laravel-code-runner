@@ -12,6 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\LaravelCodeRunner\Contracts;
 
-interface ResultModifierContract extends ModifierContract
+interface CodeModifierContract extends ModifierContract
 {
 }

@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\LaravelCodeRunner\Facades;
 
-use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
 use Illuminate\Support\Facades\Facade;
 
 class CodeRunner extends Facade
@@ -22,6 +21,6 @@ class CodeRunner extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return CodeRunnerContract::class;
+        return \Guanguans\LaravelCodeRunner\CodeRunner::class;
     }
 }

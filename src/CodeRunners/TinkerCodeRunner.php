@@ -25,41 +25,36 @@ use Symfony\Component\Console\Output\BufferedOutput;
 /**
  * This is modified from `https://github.com/spatie/laravel-web-tinker`.
  */
-class WebTinkerCodeRunner implements CodeRunnerContract
+class TinkerCodeRunner implements CodeRunnerContract
 {
     protected BufferedOutput $bufferedOutput;
-
     protected Shell $shell;
 
-    public function __construct()
+    public function __construct(BufferedOutput $bufferedOutput, ?string $configFile = null)
     {
-        $this->bufferedOutput = new BufferedOutput();
+        $this->bufferedOutput = $bufferedOutput;
 
-        $this->shell = $this->createShell($this->bufferedOutput);
+        $this->shell = $this->createShell($bufferedOutput, $configFile);
     }
 
     public function run(string $code): string
     {
-        $code = $this->removeComments($code);
-
         $this->shell->addInput($code);
 
-        $closure = new ExecutionLoopClosure($this->shell);
+        $executionLoopClosure = new ExecutionLoopClosure($this->shell);
 
-        $closure->execute();
+        $executionLoopClosure->execute();
 
         return $this->bufferedOutput->fetch();
     }
 
-    protected function createShell(BufferedOutput $bufferedOutput): Shell
+    protected function createShell(BufferedOutput $bufferedOutput, ?string $configFile = null): Shell
     {
         $configuration = new Configuration([
             'updateCheck' => 'never',
-            'configFile' => null !== config('code-runner.config_file') ? base_path(config('code-runner.config_file')) : null,
+            'configFile' => $configFile,
         ]);
-
         $configuration->setHistoryFile(defined('PHP_WINDOWS_VERSION_BUILD') ? 'null' : '/dev/null');
-
         $configuration->getPresenter()->addCasters([
             Collection::class => 'Laravel\Tinker\TinkerCaster::castCollection',
             Model::class => 'Laravel\Tinker\TinkerCaster::castModel',
@@ -67,57 +62,13 @@ class WebTinkerCodeRunner implements CodeRunnerContract
         ]);
 
         $shell = new Shell($configuration);
-
         $shell->setOutput($bufferedOutput);
 
         $composerClassMap = base_path('vendor/composer/autoload_classmap.php');
-
         if (file_exists($composerClassMap)) {
             ClassAliasAutoloader::register($shell, $composerClassMap);
         }
 
         return $shell;
-    }
-
-    public function removeComments(string $code): string
-    {
-        return collect(token_get_all("<?php\n".$code.'?>'))->reduce(
-            /**
-             * @param string|array<int, string> $token
-             */
-            function (string $carry, $token): string {
-                if (is_string($token)) {
-                    return $carry.$token;
-                }
-
-                $text = $this->ignoreCommentsAndPhpTags($token);
-
-                return $carry.$text;
-            },
-            ''
-        );
-    }
-
-    protected function ignoreCommentsAndPhpTags(array $token): string
-    {
-        [$id, $text] = $token;
-
-        if (T_COMMENT === $id) {
-            return '';
-        }
-
-        if (T_DOC_COMMENT === $id) {
-            return '';
-        }
-
-        if (T_OPEN_TAG === $id) {
-            return '';
-        }
-
-        if (T_CLOSE_TAG === $id) {
-            return '';
-        }
-
-        return $text;
     }
 }

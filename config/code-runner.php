@@ -11,33 +11,24 @@ declare(strict_types=1);
  */
 
 return [
-    /**
-     * By default this package will only run in local development.
-     * Do not change this, unless you know what you are doing.
-     */
-    'enabled' => env('WEB_TINKER_ENABLED', 'local' === env('APP_ENV')),
+    'enabled' => env('CODE_RUNNER_ENABLED', 'local' === env('APP_ENV')),
 
     /**
      * @see https://github.com/highlightjs/highlight.js/tree/main/src/styles
      */
-    'theme' => env('WEB_TINKER_THEME', 'github-dark'),
+    'theme' => env('CODE_RUNNER_THEME', 'github-dark'),
 
     'route' => [
         'domain' => null,
         'middleware' => Guanguans\LaravelCodeRunner\Http\Middleware\Authorize::class,
-        'as' => 'code-runner.',
         'name' => 'code-runner.',
+        'as' => 'code-runner.',
         'prefix' => '/code-runner',
     ],
 
-    'code_runner' => Guanguans\LaravelCodeRunner\CodeRunners\WebTinkerCodeRunner::class,
+    'code_runner' => Guanguans\LaravelCodeRunner\CodeRunners\ArtisanCodeRunner::class,
 
-    'result_modifier' => Guanguans\LaravelCodeRunner\ResultModifiers\PrefixDateTimeResultModifier::class,
+    'code_modifier' => Guanguans\LaravelCodeRunner\CodeModifiers\RemoveCommentCodeModifier::class,
 
-    /*
-     * If you want to fine-tune PsySH configuration specify
-     * configuration file name, relative to the root of your
-     * application directory.
-     */
-    'config_file' => env('WEB_TINKER_CONFIG_FILE'),
+    'result_modifier' => \Guanguans\LaravelCodeRunner\ResultModifiers\PrefixDateTimeResultModifier::class,
 ];

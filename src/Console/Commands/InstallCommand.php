@@ -24,11 +24,11 @@ class InstallCommand extends Command
     /**
      * @var string
      */
-    protected $description = 'Install all of the `Code Runner` resources';
+    protected $description = 'Install all of the `Code Runner` resources.';
 
     public function handle(): void
     {
-        $this->comment('Publishing `Code Runner` Resources...');
+        $this->comment('Publishing `Code Runner` resources...');
 
         /** @noinspection PhpParamsInspection */
         $this->call('vendor:publish', [

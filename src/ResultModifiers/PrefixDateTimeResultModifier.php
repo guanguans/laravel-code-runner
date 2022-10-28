@@ -23,7 +23,12 @@ class PrefixDateTimeResultModifier implements ResultModifierContract
 
     protected function clean(string $result): string
     {
-        $result = preg_replace(/** @lang PhpRegExp */ '#(?s)(<aside.*?</aside>)|Exit: {2}Ctrl\+D#ms', '$2', $result);
+        $result = preg_replace(
+            /** @lang PhpRegExp */
+            '#(?s)(<aside.*?</aside>)|Exit: {2}Ctrl\+D#ms',
+            '$2',
+            $result
+        );
 
         return trim($result);
     }

@@ -13,12 +13,14 @@ declare(strict_types=1);
 namespace Guanguans\LaravelCodeRunner;
 
 use Guanguans\LaravelCodeRunner\Console\Commands\InstallCommand;
+use Guanguans\LaravelCodeRunner\Contracts\CodeModifierContract;
 use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
 use Guanguans\LaravelCodeRunner\Contracts\ResultModifierContract;
-use Guanguans\LaravelCodeRunner\Http\Livewire\CodeRunner;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Console\AboutCommand;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
+use InvalidArgumentException;
 use Livewire\Livewire;
 use Livewire\LivewireServiceProvider;
 use Spatie\LaravelPackageTools\Package;
@@ -34,7 +36,7 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
             ->hasViews()
             ->hasTranslations()
             ->hasAssets()
-            ->hasRoute('web')
+            ->hasRoute('code-runner')
             ->hasCommand(InstallCommand::class);
     }
 
@@ -45,18 +47,36 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
 
     public function packageRegistered(): void
     {
-        $this->app->bind(CodeRunnerContract::class, config('code-runner.code_runner'));
-        $this->app->alias(CodeRunnerContract::class, 'laravel-code-runner.code-runner');
+        $this->app->bind(
+            CodeRunnerContract::class,
+            fn (): CodeRunnerContract => $this->make(config('code-runner.code_runner'))
+        );
 
-        $this->app->bind(ResultModifierContract::class, config('code-runner.result_modifier'));
-        $this->app->alias(ResultModifierContract::class, 'laravel-code-runner.result-modifier');
+        $this->app->bind(
+            CodeModifierContract::class,
+            fn (): CodeModifierContract => $this->make(config('code-runner.code_modifier'))
+        );
+
+        $this->app->bind(
+            ResultModifierContract::class,
+            fn (): ResultModifierContract => $this->make(config('code-runner.result_modifier'))
+        );
+
+        $this->app->singleton(CodeRunner::class);
+        $this->app->alias(CodeRunner::class, 'laravel-code-runner.code-runner');
     }
 
     public function packageBooted(): void
     {
-        Livewire::component('code-runner::livewire.code-runner', CodeRunner::class);
+        Livewire::component(
+            'code-runner::livewire.code-runner',
+            \Guanguans\LaravelCodeRunner\Http\Livewire\CodeRunner::class
+        );
 
-        Gate::define('view-code-runner', static fn (?Authenticatable $authenticatable = null) => app()->environment('local'));
+        Gate::define(
+            'view-code-runner',
+            static fn (?Authenticatable $authenticatable = null) => app()->environment('local')
+        );
 
         if (class_exists(AboutCommand::class)) {
             AboutCommand::add(
@@ -73,8 +93,48 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
     public function provides(): array
     {
         return [
-            CodeRunnerContract::class, 'laravel-code-runner.code-runner',
-            ResultModifierContract::class, 'laravel-code-runner.result-modifier',
+            CodeModifierContract::class,
+            CodeRunnerContract::class,
+            ResultModifierContract::class,
+            CodeRunner::class,
+            'laravel-code-runner.code-runner',
         ];
+    }
+
+    /**
+     * @param string|array $abstract
+     *
+     * @return mixed
+     *
+     * @throws \InvalidArgumentException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function make($abstract, array $parameters = [])
+    {
+        if (! in_array(gettype($abstract), ['string', 'array'])) {
+            throw new InvalidArgumentException(sprintf('Invalid argument type(string/array): %s.', gettype($abstract)));
+        }
+
+        if (is_string($abstract)) {
+            return $this->app->make($abstract, $parameters);
+        }
+
+        if (isset($abstract['__class'])) {
+            /** @noinspection CallableParameterUseCaseInTypeContextInspection */
+            $abstract = $abstract['__class'];
+            $arguments = Arr::except($abstract, '__class');
+
+            return $this->make($abstract, $arguments + $parameters);
+        }
+
+        if (isset($abstract['class'])) {
+            /** @noinspection CallableParameterUseCaseInTypeContextInspection */
+            $abstract = $abstract['class'];
+            $arguments = Arr::except($abstract, 'class');
+
+            return $this->make($abstract, $arguments + $parameters);
+        }
+
+        throw new InvalidArgumentException('Argument must be an array containing a "class" or "__class" element.');
     }
 }

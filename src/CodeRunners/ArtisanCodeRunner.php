@@ -17,10 +17,9 @@ use Illuminate\Contracts\Console\Kernel;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Throwable;
 
-class ArtisanTinkerCodeRunner implements CodeRunnerContract
+class ArtisanCodeRunner implements CodeRunnerContract
 {
     protected Kernel $kernel;
-
     protected BufferedOutput $bufferedOutput;
 
     public function __construct(Kernel $kernel, BufferedOutput $bufferedOutput)
