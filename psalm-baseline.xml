@@ -18,14 +18,9 @@
       <code>view('code-runner::livewire.code-runner')</code>
     </LessSpecificReturnStatement>
   </file>
-  <file src="src/CodeModifiers/RemoveCommentCodeModifier.php">
-    <ParamNameMismatch occurrences="1">
-      <code>$code</code>
-    </ParamNameMismatch>
-  </file>
-  <file src="src/ResultModifiers/PrefixDateTimeResultModifier.php">
-    <ParamNameMismatch occurrences="1">
-      <code>$result</code>
-    </ParamNameMismatch>
+  <file src="src/CodeRunner.php">
+    <InvalidArgument occurrences="2">
+      <code>$callback</code>
+    </InvalidArgument>
   </file>
 </files>

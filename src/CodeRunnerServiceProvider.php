@@ -106,19 +106,19 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
         }
 
         if (isset($abstract['__class'])) {
+            $parameters = Arr::except($abstract, '__class') + $parameters;
             /** @noinspection CallableParameterUseCaseInTypeContextInspection */
             $abstract = $abstract['__class'];
-            $arguments = Arr::except($abstract, '__class');
 
-            return $this->make($abstract, $arguments + $parameters);
+            return $this->make($abstract, $parameters);
         }
 
         if (isset($abstract['class'])) {
+            $parameters = Arr::except($abstract, '__class') + $parameters;
             /** @noinspection CallableParameterUseCaseInTypeContextInspection */
             $abstract = $abstract['class'];
-            $arguments = Arr::except($abstract, 'class');
 
-            return $this->make($abstract, $arguments + $parameters);
+            return $this->make($abstract, $parameters);
         }
 
         throw new InvalidArgumentException('Argument must be an array containing a "class" or "__class" element.');

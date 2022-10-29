@@ -26,7 +26,7 @@ class EvalCodeRunner implements CodeRunnerContract
         } catch (Throwable $throwable) {
             ob_end_clean();
 
-            return $throwable->getTraceAsString();
+            return $throwable->getMessage().PHP_EOL.$throwable->getTraceAsString();
         }
 
         return (string) ob_get_clean();

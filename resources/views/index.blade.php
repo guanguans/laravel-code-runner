@@ -77,7 +77,7 @@
     }
 
     var setting = {
-      "url": "{{ $path }}",
+      "url": "{{ $url }}",
       "method": "POST",
       "data": {
         "code": code

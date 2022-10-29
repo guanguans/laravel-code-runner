@@ -16,6 +16,7 @@ use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Env;
 use Laravel\Tinker\ClassAliasAutoloader;
 use Psy\Configuration;
 use Psy\ExecutionLoopClosure;
@@ -64,7 +65,8 @@ class TinkerCodeRunner implements CodeRunnerContract
         $shell = new Shell($configuration);
         $shell->setOutput($bufferedOutput);
 
-        $composerClassMap = base_path('vendor/composer/autoload_classmap.php');
+        $composerClassMap = Env::get('COMPOSER_VENDOR_DIR', base_path('vendor'));
+        $composerClassMap .= '/composer/autoload_classmap.php';
         if (file_exists($composerClassMap)) {
             ClassAliasAutoloader::register($shell, $composerClassMap);
         }

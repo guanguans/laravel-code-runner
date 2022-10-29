@@ -13,8 +13,10 @@ declare(strict_types=1);
 namespace Guanguans\LaravelCodeRunnerTests;
 
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
+use Guanguans\LaravelCodeRunner\CodeRunners\ArtisanCodeRunner;
 use Guanguans\LaravelCodeRunner\CodeRunnerServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Laravel\Tinker\TinkerServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Mockery;
 
@@ -70,6 +72,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
+            TinkerServiceProvider::class,
             LivewireServiceProvider::class,
             CodeRunnerServiceProvider::class,
         ];
@@ -77,6 +80,11 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function getEnvironmentSetUp($app): void
     {
+        $_ENV['COMPOSER_VENDOR_DIR'] = __DIR__.'/../vendor';
+
+        config()->set('code-runner.enabled', true);
+        config()->set('code-runner.route.middleware', []);
+        config()->set('code-runner.code_runner', ArtisanCodeRunner::class);
         config()->set('database.default', 'testing');
 
         // $migration = include __DIR__.'/../database/migrations/create_skeleton_table.php.stub';

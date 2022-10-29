@@ -12,11 +12,11 @@ declare(strict_types=1);
 
 namespace Guanguans\LaravelCodeRunnerTests\CodeRunners;
 
-use Guanguans\LaravelCodeRunner\CodeRunners\EvalCodeRunner;
+use Guanguans\LaravelCodeRunner\CodeRunners\ArtisanCodeRunner;
 
 it('will return a string to execute the `run` method.', function (): void {
-    expect($this->app->make(EvalCodeRunner::class))
-        ->run("echo 'foo';")->toBe('foo')
-        ->run("echo 'foo'")->not->toBe('foo')->toBeString()
-        ->run("echo 'foo")->not->toBe('foo')->toBeString();
+    expect($this->app->make(ArtisanCodeRunner::class))
+        ->run("echo 'foo';")->toStartWith('foo')
+        ->run("echo 'foo'")->toStartWith('foo')
+        ->run("echo 'foo")->not->toStartWith('foo')->toBeString();
 })->group(__DIR__, __FILE__);

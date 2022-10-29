@@ -30,7 +30,7 @@ class CodeRunnerController extends Controller
     {
         return view('code-runner::index', [
             'theme' => config('code-runner.theme'),
-            'path' => $urlGenerator->to(
+            'url' => $urlGenerator->to(
                 Str::finish(config('code-runner.route.prefix'), '/').'run'
             ),
         ]);

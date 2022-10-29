@@ -29,6 +29,8 @@
       <exclude>vendor/</exclude>
     </testsuite>
   </testsuites>
+  <php>
+  </php>
   <listeners>
     <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
       <arguments>

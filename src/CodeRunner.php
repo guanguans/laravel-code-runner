@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\LaravelCodeRunner;
 
-use Closure;
 use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
 use Guanguans\LaravelCodeRunner\Events\CodeRunnedEvent;
 use Guanguans\LaravelCodeRunner\Events\CodeRunningEvent;
@@ -58,12 +57,12 @@ class CodeRunner implements CodeRunnerContract
             ->thenReturn();
     }
 
-    public function listenCodeRunning(Closure $callback): void
+    public function listenCodeRunning(callable $callback): void
     {
         $this->dispatcher->listen(CodeRunningEvent::class, $callback);
     }
 
-    public function listenCodeRunned(Closure $callback): void
+    public function listenCodeRunned(callable $callback): void
     {
         $this->dispatcher->listen(CodeRunnedEvent::class, $callback);
     }
