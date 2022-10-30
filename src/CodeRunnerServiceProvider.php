@@ -78,6 +78,9 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
         }
     }
 
+    /**
+     * @return string[]
+     */
     public function provides(): array
     {
         return [

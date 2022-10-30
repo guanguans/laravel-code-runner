@@ -24,6 +24,7 @@ use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
 use Rector\CodingStyle\Rector\FuncCall\ConsistentPregDelimiterRector;
 use Rector\CodingStyle\Rector\MethodCall\PreferThisOrSelfMethodCallRector;
+use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\Core\Configuration\Option;
 use Rector\Core\ValueObject\PhpVersion;
@@ -76,9 +77,10 @@ return static function (RectorConfig $rectorConfig): void {
         // optional rules
         // AddDefaultValueForUndefinedVariableRector::class,
         // RemoveUnusedVariableAssignRector::class,
-        // UnSpreadOperatorRector::class,
         // ConsistentPregDelimiterRector::class,
+        UnSpreadOperatorRector::class,
         StaticClosureRector::class,
+        NewlineAfterStatementRector::class,
 
         // paths
         '**/fixtures*',

@@ -69,7 +69,10 @@ class TestCase extends \Orchestra\Testbench\TestCase
         // call more tear down methods
     }
 
-    protected function getPackageProviders($app)
+    /**
+     * @return class-string[]
+     */
+    protected function getPackageProviders($app): array
     {
         return [
             TinkerServiceProvider::class,
