@@ -21,7 +21,7 @@ return [
     'route' => [
         'domain' => null,
         'middleware' => [
-            'throttle:60,1',
+            'web',
             Guanguans\LaravelCodeRunner\Http\Middleware\Authorize::class,
         ],
         'name' => 'code-runner.',
