@@ -22,7 +22,7 @@ use Illuminate\Pipeline\Pipeline;
 class CodeRunner implements CodeRunnerContract
 {
     protected CodeRunnerContract $codeRunner;
-    protected Pipeline   $pipeline;
+    protected Pipeline $pipeline;
     protected Repository $configRepository;
     protected Dispatcher $dispatcher;
 
@@ -45,11 +45,11 @@ class CodeRunner implements CodeRunnerContract
             ->through($this->configRepository->get('code-runner.code_handlers'))
             ->thenReturn();
 
-        $this->fireCodeRunningEvent($modifiedCode);
+        $this->fireCodeRunningEvent($modifiedCode, $this->codeRunner);
 
         $result = $this->codeRunner->run($modifiedCode);
 
-        $this->fireCodeRunnedEvent($result);
+        $this->fireCodeRunnedEvent($result, $this->codeRunner);
 
         return (clone $this->pipeline)
             ->send($result)
@@ -67,13 +67,13 @@ class CodeRunner implements CodeRunnerContract
         $this->dispatcher->listen(CodeRunnedEvent::class, $callback);
     }
 
-    protected function fireCodeRunningEvent(string $code): void
+    protected function fireCodeRunningEvent(string $code, CodeRunnerContract $runnerContract): void
     {
-        $this->dispatcher->dispatch(new CodeRunningEvent($code));
+        $this->dispatcher->dispatch(new CodeRunningEvent($code, $runnerContract));
     }
 
-    protected function fireCodeRunnedEvent(string $result): void
+    protected function fireCodeRunnedEvent(string $result, CodeRunnerContract $runnerContract): void
     {
-        $this->dispatcher->dispatch(new CodeRunnedEvent($result));
+        $this->dispatcher->dispatch(new CodeRunnedEvent($result, $runnerContract));
     }
 }

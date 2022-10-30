@@ -12,12 +12,16 @@ declare(strict_types=1);
 
 namespace Guanguans\LaravelCodeRunner\Events;
 
+use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
+
 class CodeRunnedEvent
 {
     public string $result;
+    public CodeRunnerContract $runnerContract;
 
-    public function __construct(string $result)
+    public function __construct(string $result, CodeRunnerContract $runnerContract)
     {
         $this->result = $result;
+        $this->runnerContract = $runnerContract;
     }
 }

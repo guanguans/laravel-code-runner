@@ -14,6 +14,15 @@ namespace Guanguans\LaravelCodeRunner\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @method static string run(string $code)
+ * @method static void   listenCodeRunning(callable $callback)
+ * @method static void   listenCodeRunned(callable $callback)
+ *
+ * @mixin \Guanguans\LaravelCodeRunner\CodeRunner
+ *
+ * @see \Guanguans\LaravelCodeRunner\CodeRunner
+ */
 class CodeRunner extends Facade
 {
     /**
