@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/laravel-code-runner` will be documented in this file.
 
+## v0.5.0 - 2022-10-31
+
+**Full Changelog**: https://github.com/guanguans/laravel-code-runner/compare/v0.4.0...v0.5.0
+
 ## v0.4.0 - 2022-10-30
 
 **Full Changelog**: https://github.com/guanguans/laravel-code-runner/compare/v0.3.0...v0.4.0
