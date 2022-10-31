@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\LaravelCodeRunner\CodeRunners;
 
+use Guanguans\LaravelCodeRunner\CodeHandlers\PrefixAutoloadFilesCodeHandler;
 use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
-use Illuminate\Support\Env;
 use InvalidArgumentException;
 use RuntimeException;
 use Symfony\Component\Process\PhpExecutableFinder;
@@ -79,18 +79,7 @@ class PHPBinaryCodeRunner implements CodeRunnerContract
 
     protected function prefixAutoloadFilesCode(string $code): string
     {
-        $preloadFilesCode = '';
-
-        $autoloadFile = Env::get('VENDOR_DIR', base_path('vendor')).'/autoload.php';
-        if (file_exists($autoloadFile)) {
-            $preloadFilesCode = "require '$autoloadFile';".PHP_EOL;
-        }
-
-        $bootstrapFile = Env::get('BOOTSTRAP_FILE', base_path('bootstrap/app.php'));
-        if (file_exists($bootstrapFile)) {
-            $preloadFilesCode .= "require '$bootstrapFile';".PHP_EOL;
-        }
-
-        return $preloadFilesCode.$code;
+        return (new PrefixAutoloadFilesCodeHandler())
+            ->handle($code, static fn (string $handledCode): string => $handledCode);
     }
 }

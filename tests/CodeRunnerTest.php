@@ -16,9 +16,9 @@ use Guanguans\LaravelCodeRunner\CodeRunner;
 
 it('will return a string to execute the `run` method.', function (): void {
     expect($this->app->make(CodeRunner::class))
-        ->run("echo 'foo';")->toContain('foo')
-        ->run("echo 'foo'")->toContain('foo')
-        ->run("echo 'foo")->toBeString();
+        ->run("<?php echo 'foo';")->toContain('foo')
+        ->run("<?php echo 'foo'")->toContain('foo')
+        ->run("<?php echo 'foo")->toBeString();
 })->group(__DIR__, __FILE__);
 
 it('will no return to execute the `listenCodeRunning` method.', function (): void {
