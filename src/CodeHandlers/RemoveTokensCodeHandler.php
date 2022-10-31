@@ -16,7 +16,7 @@ class RemoveTokensCodeHandler
 {
     public function handle(string $code, callable $next, int ...$removedTokens): string
     {
-        $code = collect(token_get_all(sprintf("<?php\n%s?>", $code)))->reduce(
+        $code = collect(token_get_all($code))->reduce(
             /**
              * @param string|array<int, string> $token
              */
@@ -36,7 +36,6 @@ class RemoveTokensCodeHandler
     protected function ignoreToken(array $token, array $removedTokens): string
     {
         [$id, $text] = $token;
-
         if (in_array($id, $removedTokens, true)) {
             return '';
         }
