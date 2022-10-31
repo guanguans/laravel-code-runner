@@ -71,7 +71,7 @@ return static function (RectorConfig $rectorConfig): void {
         // NormalizeNamespaceByPSR4ComposerAutoloadRector::class,
         // ChangeAndIfToEarlyReturnRector::class,
         // ReturnBinaryOrToEarlyReturnRector::class,
-        // EncapsedStringsToSprintfRector::class,
+        EncapsedStringsToSprintfRector::class,
         // WrapEncapsedVariableInCurlyBracesRector::class,
 
         // optional rules

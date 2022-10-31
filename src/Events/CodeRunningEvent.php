@@ -17,11 +17,11 @@ use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
 class CodeRunningEvent
 {
     public string $code;
-    public CodeRunnerContract $runnerContract;
+    public CodeRunnerContract $codeRunner;
 
-    public function __construct(string $code, CodeRunnerContract $runnerContract)
+    public function __construct(string $code, CodeRunnerContract $codeRunnerContract)
     {
         $this->code = $code;
-        $this->runnerContract = $runnerContract;
+        $this->codeRunner = $codeRunnerContract;
     }
 }

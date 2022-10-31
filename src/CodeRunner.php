@@ -67,13 +67,13 @@ class CodeRunner implements CodeRunnerContract
         $this->dispatcher->listen(CodeRunnedEvent::class, $callback);
     }
 
-    protected function fireCodeRunningEvent(string $code, CodeRunnerContract $runnerContract): void
+    protected function fireCodeRunningEvent(string $code, CodeRunnerContract $codeRunnerContract): void
     {
-        $this->dispatcher->dispatch(new CodeRunningEvent($code, $runnerContract));
+        $this->dispatcher->dispatch(new CodeRunningEvent($code, $codeRunnerContract));
     }
 
-    protected function fireCodeRunnedEvent(string $result, CodeRunnerContract $runnerContract): void
+    protected function fireCodeRunnedEvent(string $result, CodeRunnerContract $codeRunnerContract): void
     {
-        $this->dispatcher->dispatch(new CodeRunnedEvent($result, $runnerContract));
+        $this->dispatcher->dispatch(new CodeRunnedEvent($result, $codeRunnerContract));
     }
 }
