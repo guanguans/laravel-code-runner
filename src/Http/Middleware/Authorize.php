@@ -27,15 +27,22 @@ class Authorize
      */
     public function handle(Request $request, callable $next): Response
     {
-        return $this->allowedToUseTinker() ? $next($request) : abort(403);
+        abort_if($this->deniedToUseCodeRunner(), 403);
+
+        return $next($request);
     }
 
-    protected function allowedToUseTinker(): bool
+    protected function allowedToUseCodeRunner(): bool
     {
         if (! config('code-runner.enabled')) {
             return false;
         }
 
         return Gate::check('view-code-runner');
+    }
+
+    protected function deniedToUseCodeRunner(): bool
+    {
+        return ! $this->allowedToUseCodeRunner();
     }
 }

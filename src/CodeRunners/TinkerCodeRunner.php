@@ -34,7 +34,6 @@ class TinkerCodeRunner implements CodeRunnerContract
     public function __construct(BufferedOutput $bufferedOutput, ?string $configFile = null)
     {
         $this->bufferedOutput = $bufferedOutput;
-
         $this->shell = $this->createShell($bufferedOutput, $configFile);
     }
 

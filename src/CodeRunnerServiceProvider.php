@@ -61,9 +61,9 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
             \Guanguans\LaravelCodeRunner\Http\Livewire\CodeRunner::class
         );
 
-        Gate::define(
-            'view-code-runner',
-            static fn (?Authenticatable $authenticatable = null) => app()->environment('local')
+        Gate::has($ability = 'view-code-runner') or Gate::define(
+            $ability,
+            fn (?Authenticatable $authenticatable = null) => $this->app->environment('local')
         );
 
         if (class_exists(AboutCommand::class)) {
