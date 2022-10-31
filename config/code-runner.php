@@ -40,6 +40,7 @@ return [
             T_OPEN_TAG,
             T_CLOSE_TAG
         ),
+        // Guanguans\LaravelCodeRunner\CodeHandlers\PrefixAutoloadFilesCodeHandler::class,
     ],
 
     'result_handlers' => [
