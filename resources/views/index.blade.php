@@ -67,28 +67,30 @@
 <script>
   function runCode(type) {
     var code = type === "selected" ? window.getSelection().toString() : $("#code").val();
-
     if (!code) {
-      var toastElement = document.getElementById('toast')
-      var toast = new bootstrap.Toast(toastElement);
-      type === "selected" ? $('.toast-body').text('Please select code.') : null;
-
-      return toast.show();
+      return alert("selected" ? "Please select code." : "Please input code.");
     }
 
     var setting = {
-      "url": "{{ $url }}",
-      "method": "POST",
-      "headers": {
+      url: "{{ $url }}",
+      method: "POST",
+      headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      "data": {
+      data: {
         "code": code
       },
     };
 
-    $.ajax(setting).done(function (response) {
+    $.ajax(setting).done(function (response, status, xhr) {
       $("#result").html(response.result)
+    }).fail(function (xhr, status, err) {
+      var message = xhr.responseJSON.hasOwnProperty('message')
+          ? (xhr.responseJSON.message ?? err)
+          : err;
+
+      alert(message);
+    }).always(function (responseOrXhr, status, xhrOrErr) {
     });
   }
 
@@ -96,6 +98,14 @@
     $("#code").val("");
 
     $("#result").html('<span class="text-muted">Result</span>');
+  }
+
+  function alert(message) {
+    $('.toast-body').text(message);
+
+    var toastElement = document.getElementById('toast')
+    var toast = new bootstrap.Toast(toastElement);
+    toast.show();
   }
 </script>
 <script type="module">

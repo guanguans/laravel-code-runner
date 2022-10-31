@@ -27,7 +27,7 @@ class Authorize
      */
     public function handle(Request $request, callable $next): Response
     {
-        abort_if($this->deniedToUseCodeRunner(), 403);
+        abort_if($this->deniedToUseCodeRunner(), 403, 'Denied to use `Code Runner`');
 
         return $next($request);
     }
