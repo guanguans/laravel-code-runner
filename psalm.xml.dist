@@ -20,4 +20,7 @@
     <issueHandlers>
         <PropertyNotSetInConstructor errorLevel="info"/>
     </issueHandlers>
+    <plugins>
+        <pluginClass class="Psalm\LaravelPlugin\Plugin"/>
+    </plugins>
 </psalm>

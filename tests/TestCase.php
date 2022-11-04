@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\LaravelCodeRunnerTests;
 
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Guanguans\LaravelCodeRunner\CodeHandlers\PrefixAutoloadFilesCodeHandler;
 use Guanguans\LaravelCodeRunner\CodeRunners\ArtisanCodeRunner;
@@ -20,10 +21,12 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Laravel\Tinker\TinkerServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Mockery;
+use Spatie\Snapshots\MatchesSnapshots;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     use ArraySubsetAsserts;
+    use MatchesSnapshots;
 
     /**
      * This method is called before the first test of this test class is run.
@@ -76,6 +79,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app): array
     {
         return [
+            IdeHelperServiceProvider::class,
             TinkerServiceProvider::class,
             LivewireServiceProvider::class,
             CodeRunnerServiceProvider::class,
