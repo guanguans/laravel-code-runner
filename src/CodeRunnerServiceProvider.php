@@ -20,7 +20,6 @@ use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
-use InvalidArgumentException;
 use Livewire\Livewire;
 use Livewire\LivewireServiceProvider;
 use Spatie\LaravelPackageTools\Package;
@@ -96,7 +95,7 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
     public function make($abstract, array $parameters = [])
     {
         if (! in_array(gettype($abstract), ['string', 'array'])) {
-            throw new InvalidArgumentException(sprintf('Invalid argument type(string/array): %s.', gettype($abstract)));
+            throw new \InvalidArgumentException(sprintf('Invalid argument type(string/array): %s.', gettype($abstract)));
         }
 
         if (is_string($abstract)) {
@@ -119,7 +118,7 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
             return $this->make($abstract, $parameters);
         }
 
-        throw new InvalidArgumentException('Argument must be an array containing a "class" or "__class" element.');
+        throw new \InvalidArgumentException('Argument must be an array containing a "class" or "__class" element.');
     }
 
     /**

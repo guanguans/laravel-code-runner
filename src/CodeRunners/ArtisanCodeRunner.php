@@ -15,7 +15,6 @@ namespace Guanguans\LaravelCodeRunner\CodeRunners;
 use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
 use Illuminate\Contracts\Console\Kernel;
 use Symfony\Component\Console\Output\BufferedOutput;
-use Throwable;
 
 class ArtisanCodeRunner implements CodeRunnerContract
 {
@@ -37,7 +36,7 @@ class ArtisanCodeRunner implements CodeRunnerContract
                 ['--execute' => $code],
                 $this->bufferedOutput
             );
-        } catch (Throwable $throwable) {
+        } catch (\Throwable $throwable) {
             return $throwable->getTraceAsString();
         }
 

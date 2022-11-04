@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Guanguans\LaravelCodeRunner\CodeRunners;
 
 use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
-use Throwable;
 
 class EvalCodeRunner implements CodeRunnerContract
 {
@@ -23,7 +22,7 @@ class EvalCodeRunner implements CodeRunnerContract
 
         try {
             eval($code);
-        } catch (Throwable $throwable) {
+        } catch (\Throwable $throwable) {
             ob_end_clean();
 
             return $throwable->getMessage().PHP_EOL.$throwable->getTraceAsString();

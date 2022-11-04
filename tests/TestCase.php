@@ -20,7 +20,6 @@ use Guanguans\LaravelCodeRunner\CodeRunnerServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Laravel\Tinker\TinkerServiceProvider;
 use Livewire\LivewireServiceProvider;
-use Mockery;
 use Spatie\Snapshots\MatchesSnapshots;
 
 class TestCase extends \Orchestra\Testbench\TestCase
@@ -62,7 +61,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function tearDown(): void
     {
         $this->finish();
-        Mockery::close();
+        \Mockery::close();
     }
 
     /**

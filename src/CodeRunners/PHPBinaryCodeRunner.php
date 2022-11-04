@@ -14,8 +14,6 @@ namespace Guanguans\LaravelCodeRunner\CodeRunners;
 
 use Guanguans\LaravelCodeRunner\CodeHandlers\PrefixAutoloadFilesCodeHandler;
 use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
-use InvalidArgumentException;
-use RuntimeException;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
@@ -33,7 +31,7 @@ class PHPBinaryCodeRunner implements CodeRunnerContract
             /** @noinspection CallableParameterUseCaseInTypeContextInspection */
             $phpBinary = (new PhpExecutableFinder())->find(false);
             if (! $phpBinary) {
-                throw new RuntimeException('No PHP found, please configure the PHP binary.');
+                throw new \RuntimeException('No PHP found, please configure the PHP binary.');
             }
 
             $this->setPhpBinary($phpBinary);
@@ -61,7 +59,7 @@ class PHPBinaryCodeRunner implements CodeRunnerContract
     public function setPhpBinary(string $phpBinary): void
     {
         if (! file_exists($phpBinary) || ! is_executable($phpBinary) || is_dir($phpBinary)) {
-            throw new InvalidArgumentException(sprintf('PHP binary does not exist, or the PHP binary is not executable.: `%s`', $phpBinary));
+            throw new \InvalidArgumentException(sprintf('PHP binary does not exist, or the PHP binary is not executable.: `%s`', $phpBinary));
         }
 
         $this->phpBinary = realpath($phpBinary);

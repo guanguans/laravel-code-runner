@@ -13,13 +13,12 @@ declare(strict_types=1);
 namespace Guanguans\LaravelCodeRunnerTests\CodeRunners;
 
 use Guanguans\LaravelCodeRunner\CodeRunners\PHPBinaryCodeRunner;
-use InvalidArgumentException;
 
 use function Pest\Faker\faker;
 
 it('will throws a `InvalidArgumentException` to execute the `__construct` method.', function (): void {
     new PHPBinaryCodeRunner(faker()->url());
-})->group(__DIR__, __FILE__)->throws(InvalidArgumentException::class, 'PHP binary does not exist, or the PHP binary is not executable.: ');
+})->group(__DIR__, __FILE__)->throws(\InvalidArgumentException::class, 'PHP binary does not exist, or the PHP binary is not executable.: ');
 
 it('will return a string to execute the `run` method.', function (): void {
     expect($this->app->make(PHPBinaryCodeRunner::class))
