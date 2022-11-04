@@ -12,12 +12,14 @@ declare(strict_types=1);
 
 namespace Guanguans\LaravelCodeRunner;
 
+use Composer\InstalledVersions;
 use Guanguans\LaravelCodeRunner\Console\Commands\InstallCommand;
 use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Livewire\Livewire;
 use Livewire\LivewireServiceProvider;
@@ -68,16 +70,7 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
             );
         }
 
-        if (class_exists(AboutCommand::class)) {
-            AboutCommand::add(
-                'Laravel Code Runner',
-                [
-                    'Author' => 'guanguans',
-                    'Homepage' => 'https://github.com/guanguans/laravel-code-runner',
-                    'License' => 'MIT',
-                ]
-            );
-        }
+        $this->addSectionToAboutCommand();
     }
 
     /**
@@ -127,5 +120,44 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
         }
 
         throw new InvalidArgumentException('Argument must be an array containing a "class" or "__class" element.');
+    }
+
+    /**
+     * @throws \JsonException
+     */
+    protected function addSectionToAboutCommand(): void
+    {
+        if (! class_exists(InstalledVersions::class)) {
+            return;
+        }
+
+        if (! class_exists(AboutCommand::class)) {
+            return;
+        }
+
+        AboutCommand::add('Laravel Code Runner', function (): array {
+            $fullPackageName = "guanguans/{$this->package->name}";
+
+            $installedVersions = collect(InstalledVersions::getAllRawData())
+                ->pluck('versions')
+                ->first(static fn (array $installedVersions): bool => isset($installedVersions[$fullPackageName]), []);
+
+            $composerJson = json_decode(
+                file_get_contents(base_path("vendor/{$fullPackageName}/composer.json")),
+                true,
+                512,
+                JSON_THROW_ON_ERROR
+            );
+
+            return collect(($installedVersions[$fullPackageName] ?? []) + $composerJson)
+                ->except([
+                    'install_path',
+                    'readme',
+                    'reference',
+                ])
+                ->filter(static fn ($value): bool => is_string($value) && $value)
+                ->mapWithKeys(static fn ($value, $key) => [Str::headline($key) => $value])
+                ->toArray();
+        });
     }
 }
