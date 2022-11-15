@@ -10,9 +10,9 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\LaravelCodeRunnerTests\Console\Commands;
+namespace Guanguans\LaravelCodeRunnerTests\Commands;
 
-use Guanguans\LaravelCodeRunner\Console\Commands\InstallCommand;
+use Guanguans\LaravelCodeRunner\Commands\InstallCommand;
 
 use function Pest\Laravel\artisan;
 

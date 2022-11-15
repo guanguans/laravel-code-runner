@@ -10,7 +10,7 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\LaravelCodeRunner\Console\Commands;
+namespace Guanguans\LaravelCodeRunner\Commands;
 
 use Illuminate\Console\Command;
 
@@ -19,7 +19,7 @@ class InstallCommand extends Command
     /**
      * @var string
      */
-    protected $signature = 'code-runner:install';
+    protected $signature = 'code-runner:install {--f|force : Overwrite any existing files}';
 
     /**
      * @var string
@@ -33,10 +33,11 @@ class InstallCommand extends Command
         /** @noinspection PhpParamsInspection */
         $this->call('vendor:publish', [
             '--tag' => [
-                // 'code-runner-assets',
+                'code-runner-assets',
                 // 'code-runner-translations',
-                'code-runner-views',
+                // 'code-runner-views',
             ],
+            '--force' => $this->option('force'),
         ]);
 
         $this->info('`Code Runner` installed successfully.');

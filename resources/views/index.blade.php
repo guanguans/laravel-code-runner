@@ -7,17 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Code Runner</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-          integrity="sha256-IUOUHAPazai08QFs7W4MbzTlwEWFo7z/4zw8YmxEiko=" crossorigin="anonymous">
-    <style>
-        textarea {
-            resize: none;
-        }
-
-        .code-show {
-            height: 500px;
-        }
-    </style>
+    <link href='{{ asset(mix('app.css', 'vendor/code-runner')) }}' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div class="container-fluid">
@@ -58,67 +48,8 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/axios@1.1.3/dist/axios.min.js"
-        integrity="sha256-uiO//DbvswiStsyiG3bbtDcoUqQIGKvRzR6fffIbvs0=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"
-        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha256-xLI5SjD6DkojxrMIVBNT4ghypv12Xtj7cOa0AgKd6wA=" crossorigin="anonymous"></script>
-<script>
-  function runCode(type) {
-    var code = type === "selected" ? window.getSelection().toString() : $("#code").val();
-    if (!code) {
-      return alert("selected" ? "Please select code." : "Please input code.");
-    }
-
-    var setting = {
-      url: "{{ $url }}",
-      method: "POST",
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      data: {
-        "code": code
-      },
-    };
-
-    $.ajax(setting).done(function (response, status, xhr) {
-      $("#result").html(response.result)
-    }).fail(function (xhr, status, err) {
-      var message = xhr.responseJSON.hasOwnProperty('message')
-          ? (xhr.responseJSON.message ?? err)
-          : err;
-
-      alert(message);
-    }).always(function (responseOrXhr, status, xhrOrErr) {
-    });
-  }
-
-  function clearCode() {
-    $("#code").val("");
-
-    $("#result").html('<span class="text-muted">Result</span>');
-  }
-
-  function alert(message) {
-    $('.toast-body').text(message);
-
-    var toastElement = document.getElementById('toast')
-    var toast = new bootstrap.Toast(toastElement);
-    toast.show();
-  }
-</script>
-<script type="module">
-  (async ({chrome, netscape}) => {
-    // add Safari polyfill if needed
-    if (!chrome && !netscape) {
-      await import("https://unpkg.com/@ungap/custom-elements");
-    }
-
-    const {default: HighlightedCode} = await import("https://unpkg.com/highlighted-code");
-
-    HighlightedCode.useTheme("{{ $theme }}");
-  })(self);
-</script>
+<url class="d-none">{{ $url }}</url>
+<theme class="d-none">{{ $theme }}</theme>
+<script type="text/javascript" src="{{ asset(mix('app.js', 'vendor/code-runner')) }}"></script>
 </body>
 </html>

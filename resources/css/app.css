@@ -1,0 +1,13 @@
+/*@tailwind base;*/
+/*@tailwind components;*/
+/*@tailwind utilities;*/
+
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+textarea {
+    resize: none;
+}
+
+.code-show {
+    height: 500px;
+}

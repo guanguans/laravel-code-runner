@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\LaravelCodeRunner;
 
 use Composer\InstalledVersions;
-use Guanguans\LaravelCodeRunner\Console\Commands\InstallCommand;
+use Guanguans\LaravelCodeRunner\Commands\InstallCommand;
 use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Console\AboutCommand;
