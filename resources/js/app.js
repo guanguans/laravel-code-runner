@@ -4,18 +4,16 @@ import 'highlighted-code';
 import { Toast } from 'bootstrap';
 
 window.runCode = function (type) {
-    var code =
-        type === 'selected'
-            ? window.getSelection().toString()
-            : document.getElementById('code').value;
+    var code = type === 'selected' ? window.getSelection().toString() : document.getElementById('code').value;
     if (!code) {
-        return alert('selected' ? 'Please select code.' : 'Please input code.');
+        const inputCode = document.getElementsByTagName('lang-input-code').item(0).innerText;
+        const selectedCode = document.getElementsByTagName('lang-selected-code').item(0).innerText;
+
+        return alert(type === 'selected' ? selectedCode : inputCode);
     }
 
     const url = document.getElementsByTagName('url').item(0).innerText;
-    const token = document.head.querySelector(
-        'meta[name="csrf-token"]'
-    ).content;
+    const token = document.head.querySelector('meta[name="csrf-token"]').content;
 
     axios({
         url: url,
@@ -42,8 +40,9 @@ window.runCode = function (type) {
 
 window.clearCode = function () {
     document.getElementById('code').value = '';
-    document.getElementById('result').innerHTML =
-        '<span class="text-muted">Result</span>';
+
+    const result = document.getElementsByTagName('lang-result').item(0).innerText;
+    document.getElementById('result').innerHTML = `<span class="text-muted">${result}</span>`;
 };
 
 window.alert = function (message) {

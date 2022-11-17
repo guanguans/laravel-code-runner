@@ -4,10 +4,8 @@ const tailwindcss = require('tailwindcss');
 mix.setPublicPath('resources/dist')
     .setResourceRoot('resources')
     .js('resources/js/app.js', 'resources/dist')
-    .postCss('resources/css/app.css', 'resources/dist', [
-        tailwindcss('tailwind.config.js')
-    ])
-    .sourceMaps()
+    .postCss('resources/css/app.css', 'resources/dist', [tailwindcss('tailwind.config.js')])
+    // .sourceMaps()
     .disableSuccessNotifications()
     .version()
     .options({

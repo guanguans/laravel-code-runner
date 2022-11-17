@@ -14,7 +14,7 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "prettier": "prettier --write 'resources/**/*.{css,js,vue,php}' '*.js'",
+        "prettier": "prettier --write 'resources/**/*.{css,js,vue,blade.php}' '*.js'",
         "vite": "vite",
         "vite-build": "vite build"
     },

@@ -34,7 +34,7 @@ class InstallCommand extends Command
         $this->call('vendor:publish', [
             '--tag' => [
                 'code-runner-assets',
-                // 'code-runner-translations',
+                'code-runner-translations',
                 // 'code-runner-views',
             ],
             '--force' => $this->option('force'),

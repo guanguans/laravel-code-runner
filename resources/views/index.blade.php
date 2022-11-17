@@ -16,38 +16,41 @@
              aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body">
-                    Please input code.
+                    {{ __('Please input code.') }}
                 </div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                        aria-label="Close"></button>
+                        aria-label="{{ __('close') }}"></button>
             </div>
         </div>
     </div>
     <div class="row g-0">
         <div class="col-6">
             <label class="form-label" for="code"></label>
-            <textarea id="code" class="form-control code-show" placeholder="Code" is="highlighted-code" language="php"
+            <textarea id="code" class="form-control code-show" placeholder="{{ __('code') }}" is="highlighted-code" language="php"
                       tab-size="4"></textarea>
         </div>
         <div class="col-6">
             <label class="form-label" for="result"></label>
             <div class="form-control overflow-auto code-show">
-                <pre id="result"><span class="text-muted">Result</span></pre>
+                <pre id="result"><span class="text-muted">{{ __('result') }}</span></pre>
             </div>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-4">
-            <button type="submit" class="form-control btn btn-success" onclick="runCode('all')">运行</button>
+            <button type="submit" class="form-control btn btn-success" onclick="runCode('all')">{{ __('run') }}</button>
         </div>
         <div class="col-4">
-            <button type="submit" class="form-control btn btn-success" onclick="runCode('selected')">运行选中</button>
+            <button type="submit" class="form-control btn btn-success" onclick="runCode('selected')">{{ __('run selected') }}</button>
         </div>
         <div class="col-4">
-            <button type="submit" class="form-control btn btn-success" onclick="clearCode()">清除</button>
+            <button type="submit" class="form-control btn btn-success" onclick="clearCode()">{{ __('clear') }}</button>
         </div>
     </div>
 </div>
+<lang-result class="d-none">{{ __('result') }}</lang-result>
+<lang-input-code class="d-none">{{ __('Please input code.') }}</lang-input-code>
+<lang-selected-code class="d-none">{{ __('Please select code.') }}</lang-selected-code>
 <url class="d-none">{{ $url }}</url>
 <theme class="d-none">{{ $theme }}</theme>
 <script type="text/javascript" src="{{ asset(mix('app.js', 'vendor/code-runner')) }}"></script>
