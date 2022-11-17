@@ -1,57 +1,56 @@
 import axios from 'axios';
-import $ from 'jquery';
-import 'bootstrap';
 import '@ungap/custom-elements';
 import 'highlighted-code';
-
-const token = document.head.querySelector('meta[name="csrf-token"]');
-if (token) {
-    axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-}
+import { Toast } from 'bootstrap';
 
 window.runCode = function (type) {
-    var code = type === 'selected' ? window.getSelection().toString() : $('#code').val();
+    var code =
+        type === 'selected'
+            ? window.getSelection().toString()
+            : document.getElementById('code').value;
     if (!code) {
         return alert('selected' ? 'Please select code.' : 'Please input code.');
     }
 
-    const url = $('url').text();
-    var setting = {
+    const url = document.getElementsByTagName('url').item(0).innerText;
+    const token = document.head.querySelector(
+        'meta[name="csrf-token"]'
+    ).content;
+
+    axios({
         url: url,
         method: 'POST',
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': token
         },
         data: {
             code: code
         }
-    };
-
-    $.ajax(setting)
-        .done(function (response, status, xhr) {
-            $('#result').html(response.result);
+    })
+        .then(function (response) {
+            document.getElementById('result').innerHTML = response.data.result;
         })
-        .fail(function (xhr, status, err) {
-            var message = xhr.responseJSON.hasOwnProperty('message')
-                ? xhr.responseJSON.message ?? err
-                : err;
+        .catch(function (error) {
+            const message = error.response.data.hasOwnProperty('message')
+                ? error.response.data.message ?? error.code
+                : error.message;
 
             alert(message);
         })
-        .always(function (responseOrXhr, status, xhrOrErr) {});
+        .then(function () {});
 };
 
 window.clearCode = function () {
-    $('#code').val('');
-
-    $('#result').html('<span class="text-muted">Result</span>');
+    document.getElementById('code').value = '';
+    document.getElementById('result').innerHTML =
+        '<span class="text-muted">Result</span>';
 };
 
 window.alert = function (message) {
-    $('.toast-body').text(message);
+    document.getElementsByClassName('toast-body').item(0).innerHTML = message;
 
-    var toastElement = document.getElementById('toast');
-    var toast = new bootstrap.Toast(toastElement);
+    const toastElement = document.getElementById('toast');
+    const toast = new Toast(toastElement);
     toast.show();
 };
 
@@ -62,6 +61,7 @@ window.alert = function (message) {
     }
 
     const { default: HighlightedCode } = await import('highlighted-code');
-    const theme = $('theme').text();
+    const theme = document.getElementsByTagName('theme').item(0).innerText;
+
     HighlightedCode.useTheme(theme);
 })(self);

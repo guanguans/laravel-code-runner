@@ -38,13 +38,13 @@
     </div>
     <div class="row mt-3">
         <div class="col-4">
-            <button type="submit" class="form-control btn btn-success" onclick="runCode('all')">运行全部</button>
+            <button type="submit" class="form-control btn btn-success" onclick="runCode('all')">运行</button>
         </div>
         <div class="col-4">
             <button type="submit" class="form-control btn btn-success" onclick="runCode('selected')">运行选中</button>
         </div>
         <div class="col-4">
-            <button type="submit" class="form-control btn btn-success" onclick="clearCode()">清除代码</button>
+            <button type="submit" class="form-control btn btn-success" onclick="clearCode()">清除</button>
         </div>
     </div>
 </div>

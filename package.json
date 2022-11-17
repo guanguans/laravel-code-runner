@@ -14,19 +14,25 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "style-fix": "prettier --write 'resources/**/*.{css,js,vue,php}' '*.js'"
+        "prettier": "prettier --write 'resources/**/*.{css,js,vue,php}' '*.js'",
+        "vite": "vite",
+        "vite-build": "vite build"
     },
     "dependencies": {
+        "@tailwindcss/forms": "^0.5.3",
         "@ungap/custom-elements": "^1.1.1",
+        "@vitejs/plugin-vue": "^3.2.0",
         "axios": "^1.1.3",
         "bootstrap": "^5.2.2",
         "codemirror": "^6.0.1",
         "highlighted-code": "^0.3.7",
-        "jquery": "^3.6.1",
         "laravel-mix": "^6.0.49",
-        "tailwindcss": "^3.1.6"
+        "laravel-vite-plugin": "^0.7.0",
+        "tailwindcss": "^3.1.6",
+        "vite": "^3.2.4"
     },
     "devDependencies": {
-        "prettier": "^2.7.1"
+        "prettier": "^2.7.1",
+        "prettier-plugin-tailwindcss": "^0.1.13"
     }
 }

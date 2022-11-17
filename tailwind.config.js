@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -11,18 +12,15 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                gray: colors.zinc
+                danger: colors.rose,
+                primary: colors.amber,
+                success: colors.green,
+                warning: colors.amber
             },
-            width: {
-                88: '22rem'
-            },
-            padding: {
-                88: '22rem'
-            },
-            transitionProperty: {
-                width: 'width'
+            fontFamily: {
+                sans: ['DM Sans', ...defaultTheme.fontFamily.sans]
             }
         }
     },
-    plugins: []
+    plugins: [require('@tailwindcss/forms')]
 };

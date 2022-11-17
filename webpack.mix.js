@@ -1,11 +1,19 @@
 const mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss');
 
 mix.setPublicPath('resources/dist')
+    .setResourceRoot('resources')
     .js('resources/js/app.js', 'resources/dist')
-    .postCss('resources/css/app.css', 'resources/dist', [require('tailwindcss')])
-    // .sourceMaps()
+    .postCss('resources/css/app.css', 'resources/dist', [
+        tailwindcss('tailwind.config.js')
+    ])
+    .sourceMaps()
+    .disableSuccessNotifications()
     .version()
     .options({
-        postCss: require('./postcss.config').plugins
-        // processCssUrls: false
+        postCss: require('./postcss.config').plugins,
+        processCssUrls: false,
+        terser: {
+            extractComments: false
+        }
     });
