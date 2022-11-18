@@ -24,19 +24,19 @@
 通过 Composer 安装该软件包。
 
 ```bash
-$ composer require guanguans/laravel-code-runner --prefer-dist -vvv
+composer require guanguans/laravel-code-runner --prefer-dist -vvv
 ```
 
 运行此命令来发布资源文件。
 
 ```bash
-$ php artisan code-runner:install
+php artisan code-runner:install
 ```
 
 发布配置文件(可选的)。
 
 ```bash
-$ php artisan vendor:publish --provider="Guanguans\LaravelCodeRunner\CodeRunnerServiceProvider" --tag="code-runner-config"
+php artisan vendor:publish --provider="Guanguans\LaravelCodeRunner\CodeRunnerServiceProvider" --tag="code-runner-config"
 ```
 
 ## 使用
@@ -72,7 +72,7 @@ public function boot()
 ## 测试
 
 ```bash
-$ composer test
+composer test
 ```
 
 ## 变更日志

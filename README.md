@@ -24,19 +24,19 @@
 You can install the package via composer.
 
 ```bash
-$ composer require guanguans/laravel-code-runner --prefer-dist -vvv
+composer require guanguans/laravel-code-runner --prefer-dist -vvv
 ```
 
-Next, you must publish the assets from this package by running this command.
+You must publish the assets from this package by running this command.
 
 ```bash
-$ php artisan code-runner:install
+php artisan code-runner:install
 ```
 
-Optionally, you can publish the config file of the package.
+You can publish the config file of the package(optional).
 
 ```bash
-$ php artisan vendor:publish --provider="Guanguans\LaravelCodeRunner\CodeRunnerServiceProvider" --tag="code-runner-config"
+php artisan vendor:publish --provider="Guanguans\LaravelCodeRunner\CodeRunnerServiceProvider" --tag="code-runner-config"
 ```
 
 ## Usage
@@ -72,7 +72,7 @@ public function boot()
 ## Testing
 
 ```bash
-$ composer test
+composer test
 ```
 
 ## Changelog
