@@ -5,9 +5,9 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 textarea {
-    resize: none;
+  resize: none;
 }
 
 .code-show {
-    height: 500px;
+  height: 500px;
 }

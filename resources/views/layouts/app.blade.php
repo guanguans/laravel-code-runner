@@ -1,8 +1,8 @@
 <head>
-    @livewireStyles
+  @livewireStyles
 </head>
 
 <body>
-    {{ $slot }}
-    @livewireScripts
+  {{ $slot }}
+  @livewireScripts
 </body>

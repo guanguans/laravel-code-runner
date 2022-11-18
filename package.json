@@ -9,6 +9,8 @@
     "scripts": {
         "dev": "npm run development",
         "development": "mix",
+        "eslint": "eslint resources/ --max-warnings=0",
+        "esfix": "eslint resources/ --max-warnings=0 --fix",
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
@@ -34,7 +36,16 @@
     },
     "devDependencies": {
         "@shufo/prettier-plugin-blade": "^1.8.0",
+        "@typescript-eslint/eslint-plugin": "^5.43.0",
+        "@typescript-eslint/typescript-estree": "^5.43.0",
+        "eslint": "^8.27.0",
+        "eslint-config-standard-with-typescript": "^23.0.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-n": "^15.5.1",
+        "eslint-plugin-promise": "^6.1.1",
+        "eslint-plugin-vue": "^9.7.0",
         "prettier": "^2.7.1",
-        "prettier-plugin-tailwindcss": "^0.1.13"
+        "prettier-plugin-tailwindcss": "^0.1.13",
+        "typescript": "^4.9.3"
     }
 }
