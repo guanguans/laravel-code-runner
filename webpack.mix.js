@@ -7,6 +7,7 @@ mix.setPublicPath('resources/dist')
     .postCss('resources/css/app.css', 'resources/dist', [tailwindcss('tailwind.config.js')])
     // .sourceMaps()
     .disableSuccessNotifications()
+    .copyDirectory('resources/favicon', 'resources/dist/favicon')
     .version()
     .options({
         postCss: require('./postcss.config').plugins,
