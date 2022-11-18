@@ -6,5 +6,20 @@
     "printWidth": 120,
     "tailwindConfig": "./tailwind.config.js",
     "trailingComma": "none",
-    "arrowParens": "avoid"
+    "arrowParens": "avoid",
+    "wrapAttributes": "auto",
+    "sortTailwindcssClasses": true,
+    "sortHtmlAttributes": "none",
+    "noPhpSyntaxCheck": false,
+    "overrides": [
+        {
+            "files": [
+                "*.blade.php"
+            ],
+            "options": {
+                "tabWidth": 4,
+                "parser": "blade"
+            }
+        }
+    ]
 }

@@ -1,6 +1,7 @@
 <head>
     @livewireStyles
 </head>
+
 <body>
     {{ $slot }}
     @livewireScripts
