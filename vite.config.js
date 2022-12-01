@@ -5,9 +5,9 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
   plugins: [
     laravel({
-      publicDirectory: 'resources/dist',
+      publicDirectory: 'resources',
       input: ['resources/css/app.css', 'resources/js/app.js'],
-      buildDirectory: 'resources/dist',
+      buildDirectory: 'dist',
       refresh: true
     }),
     vue({
