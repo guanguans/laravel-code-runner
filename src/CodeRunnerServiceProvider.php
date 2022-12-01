@@ -17,7 +17,6 @@ use Guanguans\LaravelCodeRunner\Commands\InstallCommand;
 use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Console\AboutCommand;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
@@ -48,7 +47,7 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
     {
         $this->app->bind(
             CodeRunnerContract::class,
-            fn (): CodeRunnerContract => $this->make(config('code-runner.code_runner'))
+            fn (): CodeRunnerContract => make(config('code-runner.code_runner'))
         );
 
         $this->app->singleton(CodeRunner::class);
@@ -82,43 +81,6 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
             CodeRunner::class,
             'laravel-code-runner.code-runner',
         ];
-    }
-
-    /**
-     * @param string|array $abstract
-     *
-     * @return mixed
-     *
-     * @throws \InvalidArgumentException
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
-    public function make($abstract, array $parameters = [])
-    {
-        if (! in_array(gettype($abstract), ['string', 'array'])) {
-            throw new \InvalidArgumentException(sprintf('Invalid argument type(string/array): %s.', gettype($abstract)));
-        }
-
-        if (is_string($abstract)) {
-            return $this->app->make($abstract, $parameters);
-        }
-
-        if (isset($abstract['__class'])) {
-            $parameters = Arr::except($abstract, '__class') + $parameters;
-            /** @noinspection CallableParameterUseCaseInTypeContextInspection */
-            $abstract = $abstract['__class'];
-
-            return $this->make($abstract, $parameters);
-        }
-
-        if (isset($abstract['class'])) {
-            $parameters = Arr::except($abstract, '__class') + $parameters;
-            /** @noinspection CallableParameterUseCaseInTypeContextInspection */
-            $abstract = $abstract['class'];
-
-            return $this->make($abstract, $parameters);
-        }
-
-        throw new \InvalidArgumentException('Argument must be an array containing a "class" or "__class" element.');
     }
 
     /**

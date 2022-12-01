@@ -89,7 +89,9 @@
             "Guanguans\\LaravelCodeRunner\\": "src"
         },
         "classmap": [],
-        "files": [],
+        "files": [
+            "src/Support/helpers.php"
+        ],
         "exclude-from-classmap": [
             "benchmarks"
         ]
