@@ -50,6 +50,7 @@
         "spatie/laravel-package-tools": "^1.12"
     },
     "require-dev": {
+        "awssat/tailwindo": "^3.0",
         "brainmaestro/composer-git-hooks": "^2.8",
         "dms/phpunit-arraysubset-asserts": "^0.4.0",
         "ekino/phpstan-banned-code": "^1.0",
