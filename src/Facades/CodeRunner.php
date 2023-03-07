@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Facade;
 class CodeRunner extends Facade
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected static function getFacadeAccessor(): string
     {

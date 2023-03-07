@@ -13,13 +13,13 @@ declare(strict_types=1);
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
-$header = <<<EOF
-This file is part of the guanguans/laravel-code-runner.
+$header = <<<'header'
+    This file is part of the guanguans/laravel-code-runner.
 
-(c) guanguans <ityaozm@gmail.com>
+    (c) guanguans <ityaozm@gmail.com>
 
-This source file is subject to the MIT license that is bundled.
-EOF;
+    This source file is subject to the MIT license that is bundled.
+    header;
 
 /** @noinspection PhpParamsInspection */
 $finder = Finder::create()
@@ -33,6 +33,7 @@ $finder = Finder::create()
     ->append([
         __DIR__.'/.php-cs-fixer.php',
         __DIR__.'/rector.php',
+        __DIR__.'/tests.php',
     ])
     ->exclude([
         '.github/',
@@ -52,43 +53,218 @@ $finder = Finder::create()
     ->ignoreVCS(true);
 
 return (new Config())
+    ->setFinder($finder)
+    ->setRiskyAllowed(true)
+    ->setUsingCache(false)
+    ->setCacheFile(__DIR__.'/build/.php-cs-fixer.cache')
     ->setRules([
-        '@DoctrineAnnotation' => true,
-        '@PHP80Migration:risky' => true,
+        // '@PHP70Migration' => true,
+        // '@PHP70Migration:risky' => true,
+        // '@PHP71Migration' => true,
+        // '@PHP71Migration:risky' => true,
+        // '@PHP73Migration' => true,
+        '@PHP74Migration' => true,
+        '@PHP74Migration:risky' => true,
+        // '@PHP80Migration' => true,
+        // '@PHP80Migration:risky' => true,
+        // '@PHP81Migration' => true,
+        // '@PHP82Migration' => true,
+
+        // '@PHPUnit75Migration:risky' => true,
         '@PHPUnit84Migration:risky' => true,
-        '@PSR12:risky' => true,
-        '@Symfony' => true,
+        // '@PHPUnit100Migration:risky' => true,
+
+        // '@DoctrineAnnotation' => true,
+        '@PhpCsFixer' => true,
+        '@PhpCsFixer:risky' => true,
+
+        // alias
+        'mb_str_functions' => true,
+
+        // array_notation
+
+        // basic
+        'curly_braces_position' => [
+            'control_structures_opening_brace' => 'same_line',
+            'functions_opening_brace' => 'next_line_unless_newline_at_signature_end',
+            'anonymous_functions_opening_brace' => 'same_line',
+            'classes_opening_brace' => 'next_line_unless_newline_at_signature_end',
+            'anonymous_classes_opening_brace' => 'same_line',
+            'allow_single_line_empty_anonymous_classes' => true,
+            'allow_single_line_anonymous_functions' => true,
+        ],
+        'no_multiple_statements_per_line' => true,
+
+        // casing
+        // cast_notation
+
+        // class_notation
+        'final_class' => false,
+        'final_internal_class' => false,
+        'final_public_method_for_abstract_class' => true,
+        'ordered_class_elements' => [
+            'order' => [
+                'use_trait',
+                'case',
+
+                'constant_public',
+                'constant_protected',
+                'constant_private',
+
+                'property_public',
+                'property_protected',
+                'property_private',
+
+                'construct',
+                'destruct',
+                'magic',
+                'phpunit',
+
+                'method_public',
+                'method_protected',
+                'method_private',
+            ],
+            'sort_algorithm' => 'none',
+        ],
+        'ordered_interfaces' => [
+            'order' => 'alpha',
+            'direction' => 'ascend',
+        ],
+        'self_static_accessor' => true,
+
+        // class_usage
+        'date_time_immutable' => true,
+
+        // comment
         'header_comment' => [
             'header' => $header,
             'comment_type' => 'PHPDoc',
+            'location' => 'after_declare_strict',
+            'separate' => 'both',
         ],
-        'blank_line_before_statement' => [
-            'statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try'],
+
+        // constant_notation
+
+        // control_structure
+        'control_structure_braces' => true,
+        'control_structure_continuation_position' => [
+            // 'position' => 'same_line',
         ],
-        'comment_to_phpdoc' => [
-            'ignored_tags' => [],
+        'empty_loop_condition' => [
+            // 'style' => 'for',
         ],
-        'declare_strict_types' => true,
-        'method_argument_space' => [
-            'on_multiline' => 'ensure_fully_multiline',
+        'simplified_if_return' => true,
+
+        // doctrine_annotation
+
+        // function_notation
+        'date_time_create_from_format_call' => true,
+        'nullable_type_declaration_for_default_null_value' => [
+            'use_nullable_type_declaration' => true,
+        ],
+        'phpdoc_to_param_type' => [
+            'scalar_types' => true,
+        ],
+        // 'phpdoc_to_property_type' => [
+        //     'scalar_types' => true,
+        // ],
+        'phpdoc_to_return_type' => [
+            'scalar_types' => true,
+        ],
+        'regular_callable_call' => true,
+        'single_line_throw' => false,
+        // 'static_lambda' => true,
+
+        // import
+        'group_import' => false,
+
+        // language_construct
+        'declare_parentheses' => true,
+
+        // list_notation
+
+        // namespace_notation
+        'no_blank_lines_before_namespace' => false,
+
+        // naming
+
+        // operator
+        'no_useless_concat_operator' => [
+            'juggle_simple_strings' => true,
         ],
         'not_operator_with_successor_space' => true,
-        'no_useless_return' => true,
-        'no_useless_else' => true,
-        'is_null' => true,
-        'return_assignment' => true,
-        'multiline_comment_opening_closing' => true,
-        'align_multiline_comment' => [
-            'comment_type' => 'phpdocs_only',
+
+        // php_tag
+
+        // php_unit
+        'php_unit_size_class' => [
+            'group' => 'small',
         ],
-        'phpdoc_to_comment' => [],
-        'phpdoc_var_annotation_correct_order' => true,
-        'php_unit_construct' => [
-            'assertions' => ['assertEquals', 'assertSame', 'assertNotEquals', 'assertNotSame'],
+        'php_unit_test_case_static_method_calls' => [
+            'call_type' => 'this',
+            'methods' => [],
         ],
-        'array_indentation' => true,
-        'method_chaining_indentation' => true,
+
+        // phpdoc
+        'general_phpdoc_annotation_remove' => [
+            'annotations' => [
+                'package',
+                'subpackage',
+            ],
+            'case_sensitive' => false,
+        ],
+        'phpdoc_line_span' => [
+            'const' => null,
+            'property' => null,
+            'method' => 'multi',
+        ],
+        'phpdoc_no_empty_return' => false,
+        'phpdoc_summary' => false,
+        'phpdoc_tag_casing' => [
+            'tags' => [
+                'inheritDoc',
+            ],
+        ],
+        'phpdoc_to_comment' => [
+            // 'ignored_tags' => [],
+        ],
+
+        // return_notation
+        'simplified_null_return' => true,
+
+        // semicolon
+        'multiline_whitespace_before_semicolons' => [
+            'strategy' => 'no_multi_line',
+        ],
+
+        // strict
+        'declare_strict_types' => true,
+
+        // string_notation
+        'explicit_string_variable' => false,
+
+        // whitespace
+        'blank_line_before_statement' => [
+            'statements' => [
+                'break',
+                'case',
+                'continue',
+                'declare',
+                'default',
+                'exit',
+                'goto',
+                'include',
+                'include_once',
+                'phpdoc',
+                'require',
+                'require_once',
+                'return',
+                'switch',
+                'throw',
+                'try',
+                'yield',
+                'yield_from',
+            ],
+        ],
         'statement_indentation' => true,
-    ])
-    ->setRiskyAllowed(true)
-    ->setFinder($finder);
+    ]);

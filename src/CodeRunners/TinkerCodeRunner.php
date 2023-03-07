@@ -54,7 +54,7 @@ class TinkerCodeRunner implements CodeRunnerContract
             'updateCheck' => 'never',
             'configFile' => $configFile,
         ]);
-        $configuration->setHistoryFile(defined('PHP_WINDOWS_VERSION_BUILD') ? 'null' : '/dev/null');
+        $configuration->setHistoryFile(\defined('PHP_WINDOWS_VERSION_BUILD') ? 'null' : '/dev/null');
         $configuration->getPresenter()->addCasters([
             Collection::class => 'Laravel\Tinker\TinkerCaster::castCollection',
             Model::class => 'Laravel\Tinker\TinkerCaster::castModel',

@@ -116,7 +116,7 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
                     'readme',
                     'reference',
                 ])
-                ->filter(static fn ($value): bool => is_string($value) && $value)
+                ->filter(static fn ($value): bool => \is_string($value) && $value)
                 ->mapWithKeys(static fn ($value, $key) => [Str::headline($key) => $value])
                 ->toArray();
         });

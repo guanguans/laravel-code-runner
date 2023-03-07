@@ -7,6 +7,8 @@ parameters:
         - config
         - routes
         - src
+    excludePaths:
+        - src/CodeRunnerServiceProvider.php
     tmpDir: build/phpstan
     checkOctaneCompatibility: true
     checkModelProperties: true

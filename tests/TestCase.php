@@ -22,6 +22,13 @@ use Laravel\Tinker\TinkerServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Spatie\Snapshots\MatchesSnapshots;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ *
+ * @small
+ */
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     use ArraySubsetAsserts;
@@ -73,6 +80,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
     }
 
     /**
+     * @param mixed $app
+     *
      * @return class-string[]
      */
     protected function getPackageProviders($app): array

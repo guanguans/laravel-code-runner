@@ -18,10 +18,10 @@ class RemoveTokensCodeHandler
     {
         $code = collect(token_get_all($code))->reduce(
             /**
-             * @param string|array<int, string> $token
+             * @param array<int, string>|string $token
              */
             function (string $carry, $token) use ($removedTokens): string {
-                if (is_string($token)) {
+                if (\is_string($token)) {
                     return $carry.$token;
                 }
 
@@ -36,7 +36,7 @@ class RemoveTokensCodeHandler
     protected function ignoreToken(array $token, array $removedTokens): string
     {
         [$id, $text] = $token;
-        if (in_array($id, $removedTokens, true)) {
+        if (\in_array($id, $removedTokens, true)) {
             return '';
         }
 

@@ -35,10 +35,10 @@ return [
         sprintf(
             '%s:%s,%s,%s,%s',
             Guanguans\LaravelCodeRunner\CodeHandlers\RemoveTokensCodeHandler::class,
-            T_COMMENT,
-            T_DOC_COMMENT,
-            T_OPEN_TAG,
-            T_CLOSE_TAG
+            \T_COMMENT,
+            \T_DOC_COMMENT,
+            \T_OPEN_TAG,
+            \T_CLOSE_TAG
         ),
         // Guanguans\LaravelCodeRunner\CodeHandlers\PrefixAutoloadFilesCodeHandler::class,
     ],
