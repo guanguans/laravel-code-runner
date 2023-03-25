@@ -2,6 +2,24 @@
 
 All notable changes to `guanguans/laravel-code-runner` will be documented in this file.
 
+## v0.6.1 - 2023-03-25
+
+### What's Changed
+
+- Update innocenzi/laravel-vite requirement from ^0.1.27 to ^0.1.27 || ^0.2.0 by @dependabot in https://github.com/guanguans/laravel-code-runner/pull/6
+- Update vimeo/psalm requirement from ^4.29 to ^4.29 || ^5.0 by @dependabot in https://github.com/guanguans/laravel-code-runner/pull/8
+- Update rector/rector requirement from ^0.14.6 to ^0.14.6 || ^0.15.0 by @dependabot in https://github.com/guanguans/laravel-code-runner/pull/7
+- Bump laminas/automatic-releases from 1.19.0 to 1.20.0 by @dependabot in https://github.com/guanguans/laravel-code-runner/pull/9
+- Bump laminas/automatic-releases from 1.20.0 to 1.21.0 by @dependabot in https://github.com/guanguans/laravel-code-runner/pull/10
+- Bump laminas/automatic-releases from 1.21.0 to 1.22.0 by @dependabot in https://github.com/guanguans/laravel-code-runner/pull/11
+- Bump laminas/automatic-releases from 1.22.0 to 1.23.0 by @dependabot in https://github.com/guanguans/laravel-code-runner/pull/13
+- Bump actions/stale from 6 to 7 by @dependabot in https://github.com/guanguans/laravel-code-runner/pull/12
+- Bump laminas/automatic-releases from 1.23.0 to 1.24.0 by @dependabot in https://github.com/guanguans/laravel-code-runner/pull/14
+- Bump dependabot/fetch-metadata from 1.3.5 to 1.3.6 by @dependabot in https://github.com/guanguans/laravel-code-runner/pull/15
+- Bump actions/stale from 7 to 8 by @dependabot in https://github.com/guanguans/laravel-code-runner/pull/18
+
+**Full Changelog**: https://github.com/guanguans/laravel-code-runner/compare/v0.6.0...v0.6.1
+
 ## v0.6.0 - 2022-11-18
 
 ### What's Changed
