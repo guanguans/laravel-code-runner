@@ -44,7 +44,7 @@
     "require": {
         "php": ">=7.4",
         "ext-json": "*",
-        "illuminate/contracts": "^7.0 || ^8.0 || ^9.0",
+        "illuminate/contracts": "^7.0 || ^8.0 || ^9.0 || ^10.0",
         "laravel-frontend-presets/tall": "^4.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
