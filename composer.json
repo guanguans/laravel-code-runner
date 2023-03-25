@@ -57,7 +57,7 @@
         "ekino/phpstan-banned-code": "^1.0",
         "friendsofphp/php-cs-fixer": "^3.12",
         "infection/infection": "^0.26.6",
-        "innocenzi/laravel-vite": "^0.1.27 || ^0.2.0",
+        "innocenzi/laravel-vite": "^0.1.27 || ^0.2.0 || ^0.3.0",
         "jetbrains/phpstorm-attributes": "^1.0",
         "johnkary/phpunit-speedtrap": "^4.0",
         "mockery/mockery": "^1.5",
