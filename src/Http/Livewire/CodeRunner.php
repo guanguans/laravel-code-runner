@@ -19,9 +19,8 @@ class CodeRunner extends Component
 {
     public function render(): View
     {
-        return view('code-runner::livewire.code-runner')
-            // ->layout('code-runner::layouts.app')
-            // ->slot('main')
-        ;
+        return view('code-runner::livewire.code-runner');
+        // ->layout('code-runner::layouts.app')
+        // ->slot('main')
     }
 }
