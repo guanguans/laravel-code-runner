@@ -25,9 +25,6 @@ use Illuminate\Support\Facades\Facade;
  */
 class CodeRunner extends Facade
 {
-    /**
-     * {@inheritDoc}
-     */
     protected static function getFacadeAccessor(): string
     {
         return \Guanguans\LaravelCodeRunner\CodeRunner::class;
