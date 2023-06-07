@@ -53,7 +53,7 @@
     "require-dev": {
         "awssat/tailwindo": "^3.0",
         "brainmaestro/composer-git-hooks": "^2.8",
-        "dms/phpunit-arraysubset-asserts": "^0.4.0",
+        "dms/phpunit-arraysubset-asserts": "^0.4.0 || ^0.5.0",
         "ekino/phpstan-banned-code": "^1.0",
         "friendsofphp/php-cs-fixer": "^3.12",
         "infection/infection": "^0.26.6 || ^0.27.0",
