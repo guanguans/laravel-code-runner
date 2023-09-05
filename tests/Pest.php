@@ -15,7 +15,7 @@ namespace Guanguans\LaravelCodeRunnerTests;
 use Pest\Expectation;
 
 uses(TestCase::class)
-    ->beforeEach(function (): void {
+    ->beforeEach(static function (): void {
     })
     ->in(__DIR__);
 

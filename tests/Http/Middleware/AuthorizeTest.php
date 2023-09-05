@@ -22,7 +22,7 @@ it('will throws a `HttpException` to execute the `handle` method.', function ():
     config()->set('code-runner.enabled', false);
 
     expect($this->app->make(Authorize::class))
-        ->handle($this->app->make(Request::class), fn ($request) => app(Response::class))
+        ->handle($this->app->make(Request::class), static fn ($request) => app(Response::class))
         ->toBeInstanceOf(Response::class);
 })->group(__DIR__, __FILE__)->throws(HttpException::class);
 
@@ -30,6 +30,6 @@ it('will return a `Response` to execute the `handle` method.', function (): void
     Gate::shouldReceive('check')->once()->andReturnTrue();
 
     expect($this->app->make(Authorize::class))
-        ->handle($this->app->make(Request::class), fn ($request) => app(Response::class))
+        ->handle($this->app->make(Request::class), static fn ($request) => app(Response::class))
         ->toBeInstanceOf(Response::class);
 })->group(__DIR__, __FILE__);

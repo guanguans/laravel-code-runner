@@ -47,7 +47,7 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
     {
         $this->app->bind(
             CodeRunnerContract::class,
-            fn (): CodeRunnerContract => make(config('code-runner.code_runner'))
+            static fn (): CodeRunnerContract => make(config('code-runner.code_runner'))
         );
 
         $this->app->singleton(CodeRunner::class);
