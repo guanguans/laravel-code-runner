@@ -20,7 +20,7 @@ class RemoveTokensCodeHandler
             /**
              * @param array<int, string>|string $token
              */
-            function (string $carry, $token) use ($removedTokens): string {
+            function (string $carry, array|string $token) use ($removedTokens): string {
                 if (\is_string($token)) {
                     return $carry.$token;
                 }

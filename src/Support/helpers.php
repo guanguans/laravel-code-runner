@@ -18,12 +18,10 @@ if (! function_exists('make')) {
      *
      * @psalm-param string|array<string, mixed> $abstract
      *
-     * @param mixed $abstract
-     *
      * @throws \InvalidArgumentException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    function make($abstract, array $parameters = [])
+    function make(mixed $abstract, array $parameters = [])
     {
         if (! in_array(gettype($abstract), ['string', 'array'], true)) {
             throw new InvalidArgumentException(sprintf('Invalid argument type(string/array): %s.', gettype($abstract)));
