@@ -10,6 +10,7 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Arr;
 
 if (! function_exists('make')) {
@@ -18,8 +19,8 @@ if (! function_exists('make')) {
      *
      * @psalm-param string|array<string, mixed> $abstract
      *
-     * @throws \InvalidArgumentException
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws InvalidArgumentException
+     * @throws BindingResolutionException
      */
     function make(mixed $abstract, array $parameters = [])
     {

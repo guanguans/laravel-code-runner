@@ -15,6 +15,7 @@ namespace Guanguans\LaravelCodeRunner\Http\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Authorize
 {
@@ -23,7 +24,7 @@ class Authorize
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
      *
-     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     * @throws HttpException
      */
     public function handle(Request $request, callable $next): Response
     {

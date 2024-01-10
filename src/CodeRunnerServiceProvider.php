@@ -15,6 +15,7 @@ namespace Guanguans\LaravelCodeRunner;
 use Composer\InstalledVersions;
 use Guanguans\LaravelCodeRunner\Commands\InstallCommand;
 use Guanguans\LaravelCodeRunner\Contracts\CodeRunnerContract;
+use Guanguans\LaravelCodeRunner\Http\Livewire\CodeRunner;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\Gate;
@@ -58,7 +59,7 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
     {
         Livewire::component(
             'code-runner::livewire.code-runner',
-            \Guanguans\LaravelCodeRunner\Http\Livewire\CodeRunner::class
+            CodeRunner::class
         );
 
         if (! Gate::has($ability = 'view-code-runner')) {

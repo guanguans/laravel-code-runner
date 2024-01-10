@@ -20,6 +20,7 @@ use Guanguans\LaravelCodeRunner\CodeRunnerServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Laravel\Tinker\TinkerServiceProvider;
 use Livewire\LivewireServiceProvider;
+use Orchestra\Testbench\TestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
 /**
@@ -29,7 +30,7 @@ use Spatie\Snapshots\MatchesSnapshots;
  *
  * @small
  */
-class TestCase extends \Orchestra\Testbench\TestCase
+class TestCase extends TestCase
 {
     use ArraySubsetAsserts;
     use MatchesSnapshots;
