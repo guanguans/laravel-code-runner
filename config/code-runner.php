@@ -10,6 +10,20 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
+use Guanguans\LaravelCodeRunner\CodeHandlers\RemoveTokensCodeHandler;
+use Guanguans\LaravelCodeRunner\CodeRunners\TinkerCodeRunner;
+use Guanguans\LaravelCodeRunner\Http\Middleware\Authorize;
+use Guanguans\LaravelCodeRunner\ResultHandlers\ClearResultHandler;
+use Guanguans\LaravelCodeRunner\ResultHandlers\PrefixDateTimeResultHandler;
+
+/**
+ * This file is part of the guanguans/laravel-code-runner.
+ *
+ * (c) guanguans <ityaozm@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled.
+ */
+
 return [
     'enabled' => env('CODE_RUNNER_ENABLED', 'local' === env('APP_ENV')),
 
@@ -22,19 +36,19 @@ return [
         'domain' => null,
         'middleware' => [
             'web',
-            Guanguans\LaravelCodeRunner\Http\Middleware\Authorize::class,
+            Authorize::class,
         ],
         'name' => 'code-runner.',
         'as' => 'code-runner.',
         'prefix' => '/code-runner',
     ],
 
-    'code_runner' => Guanguans\LaravelCodeRunner\CodeRunners\TinkerCodeRunner::class,
+    'code_runner' => TinkerCodeRunner::class,
 
     'code_handlers' => [
         sprintf(
             '%s:%s,%s,%s,%s',
-            Guanguans\LaravelCodeRunner\CodeHandlers\RemoveTokensCodeHandler::class,
+            RemoveTokensCodeHandler::class,
             \T_COMMENT,
             \T_DOC_COMMENT,
             \T_OPEN_TAG,
@@ -44,7 +58,7 @@ return [
     ],
 
     'result_handlers' => [
-        Guanguans\LaravelCodeRunner\ResultHandlers\ClearResultHandler::class,
-        Guanguans\LaravelCodeRunner\ResultHandlers\PrefixDateTimeResultHandler::class,
+        ClearResultHandler::class,
+        PrefixDateTimeResultHandler::class,
     ],
 ];
