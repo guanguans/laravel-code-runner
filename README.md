@@ -6,7 +6,7 @@
 
 > Run the PHP code in the browser. - 在浏览器中运行 PHP 代码。
 
-[![tests](https://github.com/guanguans/laravel-code-runner/workflows/tests/badge.svg)](https://github.com/guanguans/laravel-code-runner/actions)
+[![tests](https://github.com/guanguans/laravel-code-runner/actions/workflows/tests.yml/badge.svg)](https://github.com/guanguans/laravel-code-runner/actions/workflows/tests.yml)
 [![check & fix styling](https://github.com/guanguans/laravel-code-runner/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/guanguans/laravel-code-runner/actions)
 [![codecov](https://codecov.io/gh/guanguans/laravel-code-runner/branch/main/graph/badge.svg?token=URGFAWS6S4)](https://codecov.io/gh/guanguans/laravel-code-runner)
 [![Latest Stable Version](https://poser.pugx.org/guanguans/laravel-code-runner/v)](//packagist.org/packages/guanguans/laravel-code-runner)
