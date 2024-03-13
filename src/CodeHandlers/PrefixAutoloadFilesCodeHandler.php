@@ -20,12 +20,14 @@ class PrefixAutoloadFilesCodeHandler
     {
         $preloadFilesCode = '';
 
-        $autoloadFile = Env::get('VENDOR_DIR', base_path('vendor')).'/autoload.php';
+        // $autoloadFile = Env::get('VENDOR_DIR', base_path('vendor')).'/autoload.php';
+        $autoloadFile = ($_ENV['VENDOR_DIR'] ?? base_path('vendor')).'/autoload.php';
         if (file_exists($autoloadFile)) {
             $preloadFilesCode = "require '{$autoloadFile}';".PHP_EOL;
         }
 
-        $bootstrapFile = Env::get('BOOTSTRAP_FILE', base_path('bootstrap/app.php'));
+        // $bootstrapFile = Env::get('BOOTSTRAP_FILE', base_path('bootstrap/app.php'));
+        $bootstrapFile = ($_ENV['BOOTSTRAP_FILE'] ?? base_path('vendor')).'/bootstrap/app.php';
         if (file_exists($bootstrapFile)) {
             $preloadFilesCode .= "require '{$bootstrapFile}';".PHP_EOL;
         }

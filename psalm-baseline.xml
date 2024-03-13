@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.29.0@7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3">
+<files psalm-version="4.30.0@d0bc6e25d89f649e4f36a534f330f8bb4643dd69">
   <file src="src/CodeRunnerServiceProvider.php">
     <UnusedClosureParam occurrences="1">
       <code>$authenticatable</code>
     </UnusedClosureParam>
-  </file>
-  <file src="src/Http/Controllers/CodeRunnerController.php">
-    <MoreSpecificReturnType occurrences="1">
-      <code>View</code>
-    </MoreSpecificReturnType>
-  </file>
-  <file src="src/Http/Livewire/CodeRunner.php">
-    <MoreSpecificReturnType occurrences="1">
-      <code>View</code>
-    </MoreSpecificReturnType>
-    <LessSpecificReturnStatement occurrences="1">
-      <code>view('code-runner::livewire.code-runner')</code>
-    </LessSpecificReturnStatement>
   </file>
   <file src="src/CodeRunner.php">
     <InvalidArgument occurrences="2">

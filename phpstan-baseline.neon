@@ -4,3 +4,13 @@ parameters:
 			message: "#^Should not use node with type \"Expr_Eval\", please change the code\\.$#"
 			count: 1
 			path: src/CodeRunners/EvalCodeRunner.php
+
+		-
+			message: "#^Dynamic call to static method Illuminate\\\\Http\\\\Request\\:\\:validate\\(\\)\\.$#"
+			count: 1
+			path: src/Http/Controllers/CodeRunnerController.php
+
+		-
+			message: "#^Only booleans are allowed in a negated boolean, mixed given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Authorize.php
