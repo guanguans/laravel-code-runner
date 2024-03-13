@@ -2,6 +2,13 @@
 
 All notable changes to `guanguans/laravel-code-runner` will be documented in this file.
 
+## [0.7.0](https://github.com/guanguans/laravel-code-runner/compare/v0.6.1...v0.7.0) (2024-03-13)
+
+
+### Features
+
+* **changelog:** Add initial changelog template and configuration files ([190c5b4](https://github.com/guanguans/laravel-code-runner/commit/190c5b47d01e429d5b3140cc74e884aeffc66606))
+
 ## v0.6.1 - 2023-03-25
 
 ### What's Changed
