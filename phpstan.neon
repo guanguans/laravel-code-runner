@@ -10,20 +10,20 @@ parameters:
     excludePaths:
         - src/CodeRunnerServiceProvider.php
     tmpDir: build/phpstan
-    checkOctaneCompatibility: true
-    checkModelProperties: true
+#    checkOctaneCompatibility: true
+#    checkModelProperties: true
     checkMissingIterableValueType: true
 
-    strictRules:
-        allRules: false
-        booleansInConditions: false
-        uselessCast: false
-        requireParentConstructorCall: false
-        disallowedConstructs: false
-        overwriteVariablesWithLoop: false
-        closureUsesThis: false
-        matchingInheritedMethodNames: false
-        numericOperandsInArithmeticOperators: false
-        strictCalls: false
-        switchConditionsMatchingType: false
-        noVariableVariables: false
+#    strictRules:
+#        allRules: false
+#        booleansInConditions: false
+#        uselessCast: false
+#        requireParentConstructorCall: false
+#        disallowedConstructs: false
+#        overwriteVariablesWithLoop: false
+#        closureUsesThis: false
+#        matchingInheritedMethodNames: false
+#        numericOperandsInArithmeticOperators: false
+#        strictCalls: false
+#        switchConditionsMatchingType: false
+#        noVariableVariables: false

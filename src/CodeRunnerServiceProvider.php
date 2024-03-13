@@ -118,7 +118,7 @@ class CodeRunnerServiceProvider extends PackageServiceProvider
                     'reference',
                 ])
                 ->filter(static fn ($value): bool => \is_string($value) && $value)
-                ->mapWithKeys(static fn ($value, $key) => [Str::headline($key) => $value])
+                ->mapWithKeys(static fn ($value, $key): array => [Str::headline($key) => $value])
                 ->toArray();
         });
     }

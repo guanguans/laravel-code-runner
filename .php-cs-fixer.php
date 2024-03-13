@@ -84,7 +84,7 @@ return (new Config())
         // array_notation
 
         // basic
-        'curly_braces_position' => [
+        'braces_position' => [
             'control_structures_opening_brace' => 'same_line',
             'functions_opening_brace' => 'next_line_unless_newline_at_signature_end',
             'anonymous_functions_opening_brace' => 'same_line',
@@ -184,7 +184,7 @@ return (new Config())
         // list_notation
 
         // namespace_notation
-        'no_blank_lines_before_namespace' => false,
+        'blank_lines_before_namespace' => false,
 
         // naming
 
@@ -269,4 +269,5 @@ return (new Config())
         'statement_indentation' => true,
         'static_lambda' => false,
         'phpdoc_add_missing_param_annotation' => false,
+        'fully_qualified_strict_types' => false,
     ]);
