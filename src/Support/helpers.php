@@ -22,7 +22,7 @@ if (! function_exists('make')) {
      * @throws InvalidArgumentException
      * @throws BindingResolutionException
      */
-    function make(mixed $abstract, array $parameters = [])
+    function make($abstract, array $parameters = [])
     {
         if (! in_array(gettype($abstract), ['string', 'array'], true)) {
             throw new InvalidArgumentException(sprintf('Invalid argument type(string/array): %s.', gettype($abstract)));

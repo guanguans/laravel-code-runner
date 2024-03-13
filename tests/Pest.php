@@ -15,7 +15,7 @@ namespace Guanguans\LaravelCodeRunnerTests;
 use Pest\Expectation;
 
 uses(TestCase::class)
-    ->beforeEach(static function (): void {})
+    ->beforeEach(function (): void {})
     ->in(__DIR__);
 
 expect()->extend('assert', function (\Closure $assertions): Expectation {

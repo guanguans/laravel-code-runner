@@ -57,6 +57,8 @@
         "dms/phpunit-arraysubset-asserts": "^0.4.0 || ^0.5.0",
         "ekino/phpstan-banned-code": "^1.0",
         "friendsofphp/php-cs-fixer": "^3.12",
+        "guanguans/ai-commit": "dev-main",
+        "guanguans/monorepo-builder-worker": "^1.4",
         "infection/infection": "^0.26.6 || ^0.27.0",
         "innocenzi/laravel-vite": "^0.1.27 || ^0.2.0 || ^0.3.0",
         "jetbrains/phpstorm-attributes": "^1.0",
@@ -166,6 +168,8 @@
             "@psalm",
             "@mark-finish"
         ],
+        "ai-commit": "@php ./vendor/bin/ai-commit commit --generator=bito_cli --ansi",
+        "ai-commit-no-verify": "@ai-commit --no-verify",
         "infection": "./vendor/bin/infection --test-framework=pest --show-mutations --threads=4 --ansi",
         "mark-finish": "printf '\\n!\\n!\\t\\033[0;32m%s\\033[0m\\n!\\n\\n' \"Finished\"",
         "mark-separate": "printf '\\n!\\n!\\t\\033[0;33m%s\\033[0m\\n!\\n\\n' \"----------------\"",

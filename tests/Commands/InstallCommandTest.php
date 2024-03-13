@@ -16,7 +16,7 @@ use Guanguans\LaravelCodeRunner\Commands\InstallCommand;
 
 use function Pest\Laravel\artisan;
 
-it('will install all of the `Code Runner` resources.', static function (): void {
+it('will install all of the `Code Runner` resources.', function (): void {
     artisan(InstallCommand::class)
         ->expectsOutput('Publishing `Code Runner` resources...')
         ->expectsOutput('`Code Runner` installed successfully.')

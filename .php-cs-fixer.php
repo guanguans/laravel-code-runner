@@ -267,4 +267,6 @@ return (new Config())
             ],
         ],
         'statement_indentation' => true,
+        'static_lambda' => false,
+        'phpdoc_add_missing_param_annotation' => false,
     ]);

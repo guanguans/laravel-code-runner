@@ -20,7 +20,6 @@ use Guanguans\LaravelCodeRunner\CodeRunnerServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Laravel\Tinker\TinkerServiceProvider;
 use Livewire\LivewireServiceProvider;
-use Orchestra\Testbench\TestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
 /**
@@ -30,7 +29,7 @@ use Spatie\Snapshots\MatchesSnapshots;
  *
  * @small
  */
-class TestCase extends TestCase
+class TestCase extends \Orchestra\Testbench\TestCase
 {
     use ArraySubsetAsserts;
     use MatchesSnapshots;
@@ -77,9 +76,11 @@ class TestCase extends TestCase
     }
 
     /**
+     * @param mixed $app
+     *
      * @return class-string[]
      */
-    protected function getPackageProviders(mixed $app): array
+    protected function getPackageProviders($app): array
     {
         return [
             IdeHelperServiceProvider::class,
