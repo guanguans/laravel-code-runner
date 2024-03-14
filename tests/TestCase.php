@@ -78,7 +78,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     /**
      * @return class-string[]
      */
-    protected function getPackageProviders(mixed $app): array
+    protected function getPackageProviders($app): array
     {
         return [
             IdeHelperServiceProvider::class,
