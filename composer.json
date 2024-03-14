@@ -60,7 +60,7 @@
         "friendsofphp/php-cs-fixer": "^3.51",
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
-        "infection/infection": "^0.26",
+        "infection/infection": "^0.26 || ^0.27",
         "innocenzi/laravel-vite": "^0.1",
         "jetbrains/phpstorm-attributes": "^1.0",
         "johnkary/phpunit-speedtrap": "^4.0",
