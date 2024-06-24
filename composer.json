@@ -52,7 +52,7 @@
     },
     "require-dev": {
         "awssat/tailwindo": "^3.0",
-        "brainmaestro/composer-git-hooks": "^2.8",
+        "brainmaestro/composer-git-hooks": "^2.8 || ^3.0",
         "corveda/php-sandbox": "^3.0",
         "dms/phpunit-arraysubset-asserts": "^0.5",
         "ekino/phpstan-banned-code": "^1.0",
